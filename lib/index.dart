@@ -7,3 +7,5 @@ export '/pages/developer_pages/developer_home_page/developer_home_page_widget.da
 export '/pages/user_pages/user_home_page/user_home_page_widget.dart'
     show UserHomePageWidget;
 export '/pages/splash_page/splash_page_widget.dart' show SplashPageWidget;
+export '/pages/developer_pages/add_admins_page/add_admins_page_widget.dart'
+    show AddAdminsPageWidget;

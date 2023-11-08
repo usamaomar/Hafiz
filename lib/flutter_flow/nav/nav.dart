@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/index.dart';
+import '/main.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -49,7 +50,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DeveloperHomePage',
           path: '/developerHomePage',
-          builder: (context, params) => const DeveloperHomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'DeveloperHomePage')
+              : const DeveloperHomePageWidget(),
         ),
         FFRoute(
           name: 'UserHomePage',
@@ -60,6 +63,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SplashPage',
           path: '/splashPage',
           builder: (context, params) => const SplashPageWidget(),
+        ),
+        FFRoute(
+          name: 'AddAdminsPage',
+          path: '/addAdminsPage',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'AddAdminsPage')
+              : const AddAdminsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

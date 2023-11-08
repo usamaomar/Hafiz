@@ -137,8 +137,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // DeveloperHomePage
   {
+    'c159myw0': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    'b96a179c': {
+      'en': '',
+      'ar': '',
+    },
     '88ouvljg': {
-      'en': 'Home',
+      'en': '',
       'ar': '',
     },
   },
@@ -158,6 +166,43 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'exld0lzw': {
       'en': 'Home',
       'ar': '',
+    },
+  },
+  // sideComponent
+  {
+    'jnfc9vnz': {
+      'en': 'Haviz',
+      'ar': 'حافظ',
+    },
+    'as827qzf': {
+      'en': 'Add Center',
+      'ar': 'اضافة مركز',
+    },
+    'dy8tk8pv': {
+      'en': 'Add Admins',
+      'ar': 'إضافة المسؤولين',
+    },
+  },
+  // AddCenterDialog
+  {
+    'c0nxzsnh': {
+      'en': 'Center Name',
+      'ar': 'اسم المركز',
+    },
+    '2m9j8svb': {
+      'en': 'Phone Number',
+      'ar': 'رقم الهاتف',
+    },
+    'e7eqdp27': {
+      'en': 'Save',
+      'ar': 'حفظ',
+    },
+  },
+  // MapComponent
+  {
+    '7e06yetq': {
+      'en': 'Set location',
+      'ar': 'حدد المكان',
     },
   },
   // Miscellaneous

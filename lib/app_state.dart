@@ -30,6 +30,12 @@ class FFAppState extends ChangeNotifier {
   void updateUserModelStruct(Function(UserModelStruct) updateFn) {
     updateFn(_userModel);
   }
+
+  LatLng? _location;
+  LatLng? get location => _location;
+  set location(LatLng? value) {
+    _location = value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'schema/util/firestore_util.dart';
 
 import 'schema/user_collection_record.dart';
+import 'schema/center_collection_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,6 +12,7 @@ export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
 export 'schema/user_collection_record.dart';
+export 'schema/center_collection_record.dart';
 
 /// Functions to query UserCollectionRecords (as a Stream and as a Future).
 Future<int> queryUserCollectionRecordCount({
@@ -44,6 +46,43 @@ Future<List<UserCollectionRecord>> queryUserCollectionRecordOnce({
     queryCollectionOnce(
       UserCollectionRecord.collection,
       UserCollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query CenterCollectionRecords (as a Stream and as a Future).
+Future<int> queryCenterCollectionRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      CenterCollectionRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<CenterCollectionRecord>> queryCenterCollectionRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      CenterCollectionRecord.collection,
+      CenterCollectionRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<CenterCollectionRecord>> queryCenterCollectionRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      CenterCollectionRecord.collection,
+      CenterCollectionRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,
