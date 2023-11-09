@@ -145,6 +145,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '',
       'ar': '',
     },
+    '9r1hjcbs': {
+      'en': 'Center Name',
+      'ar': 'اسم المركز',
+    },
+    'nnv2dv3a': {
+      'en': 'Phone Number',
+      'ar': 'رقم التليفون',
+    },
     '88ouvljg': {
       'en': '',
       'ar': '',
@@ -165,6 +173,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'exld0lzw': {
       'en': 'Home',
+      'ar': '',
+    },
+  },
+  // AddAdminsPage
+  {
+    'bouh0nkl': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    'ufus4mf0': {
+      'en': '',
+      'ar': '',
+    },
+    'y9lxu6r2': {
+      'en': 'Center Name',
+      'ar': 'اسم المركز',
+    },
+    '0a4cyotz': {
+      'en': 'Phone Number',
+      'ar': 'رقم التليفون',
+    },
+    'dokn39m2': {
+      'en': 'Edit Column 1',
+      'ar': '',
+    },
+    'uv7yustd': {
+      'en': 'Edit Column 2',
       'ar': '',
     },
   },

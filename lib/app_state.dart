@@ -36,6 +36,64 @@ class FFAppState extends ChangeNotifier {
   set location(LatLng? value) {
     _location = value;
   }
+
+  List<String> _listOfNames = [];
+  List<String> get listOfNames => _listOfNames;
+  set listOfNames(List<String> value) {
+    _listOfNames = value;
+  }
+
+  void addToListOfNames(String value) {
+    _listOfNames.add(value);
+  }
+
+  void removeFromListOfNames(String value) {
+    _listOfNames.remove(value);
+  }
+
+  void removeAtIndexFromListOfNames(int index) {
+    _listOfNames.removeAt(index);
+  }
+
+  void updateListOfNamesAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _listOfNames[index] = updateFn(_listOfNames[index]);
+  }
+
+  void insertAtIndexInListOfNames(int index, String value) {
+    _listOfNames.insert(index, value);
+  }
+
+  List<String> _listOfPhoneNumbers = [];
+  List<String> get listOfPhoneNumbers => _listOfPhoneNumbers;
+  set listOfPhoneNumbers(List<String> value) {
+    _listOfPhoneNumbers = value;
+  }
+
+  void addToListOfPhoneNumbers(String value) {
+    _listOfPhoneNumbers.add(value);
+  }
+
+  void removeFromListOfPhoneNumbers(String value) {
+    _listOfPhoneNumbers.remove(value);
+  }
+
+  void removeAtIndexFromListOfPhoneNumbers(int index) {
+    _listOfPhoneNumbers.removeAt(index);
+  }
+
+  void updateListOfPhoneNumbersAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _listOfPhoneNumbers[index] = updateFn(_listOfPhoneNumbers[index]);
+  }
+
+  void insertAtIndexInListOfPhoneNumbers(int index, String value) {
+    _listOfPhoneNumbers.insert(index, value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

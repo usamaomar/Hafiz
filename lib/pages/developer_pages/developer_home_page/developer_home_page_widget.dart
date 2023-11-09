@@ -1,10 +1,15 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/developer_pages/add_center_dialog/add_center_dialog_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:collection/collection.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'developer_home_page_model.dart';
@@ -27,6 +32,30 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DeveloperHomePageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.listOfFirebaseCenters = await queryCenterCollectionRecordOnce();
+      setState(() {
+        FFAppState().listOfNames = _model.listOfFirebaseCenters!
+            .map((e) => e.name)
+            .toList()
+            .toList()
+            .cast<String>();
+        FFAppState().listOfPhoneNumbers = _model.listOfFirebaseCenters!
+            .map((e) => e.phoneNumber)
+            .toList()
+            .toList()
+            .cast<String>();
+      });
+      setState(() {
+        _model.localCenterList = functions
+            .combineStringLists(FFAppState().listOfNames.toList(),
+                FFAppState().listOfPhoneNumbers.toList())
+            .toList()
+            .cast<CenterModelStruct>();
+      });
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -85,7 +114,25 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
                             const Duration(milliseconds: 400),
-                            () => setState(() {}),
+                            () async {
+                              setState(() {
+                                _model.localCenterList = functions
+                                    .filterCenterModelList(
+                                        functions
+                                            .combineStringLists(
+                                                FFAppState()
+                                                    .listOfNames
+                                                    .toList(),
+                                                FFAppState()
+                                                    .listOfPhoneNumbers
+                                                    .toList())
+                                            .toList(),
+                                        _model.localCenterList.toList(),
+                                        _model.textController.text)
+                                    .toList()
+                                    .cast<CenterModelStruct>();
+                              });
+                            },
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
@@ -182,6 +229,68 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                       ),
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    final list = _model.localCenterList.map((e) => e).toList();
+                    return DataTable2(
+                      columns: [
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                '9r1hjcbs' /* Center Name */,
+                              ),
+                              style: FlutterFlowTheme.of(context).labelLarge,
+                            ),
+                          ),
+                        ),
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              FFLocalizations.of(context).getText(
+                                'nnv2dv3a' /* Phone Number */,
+                              ),
+                              style: FlutterFlowTheme.of(context).labelLarge,
+                            ),
+                          ),
+                        ),
+                      ],
+                      rows: list
+                          .mapIndexed((listIndex, listItem) => [
+                                Text(
+                                  listItem.name,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                                Text(
+                                  listItem.phoneNumber,
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                              ].map((c) => DataCell(c)).toList())
+                          .map((e) => DataRow(cells: e))
+                          .toList(),
+                      headingRowColor: MaterialStateProperty.all(
+                        FlutterFlowTheme.of(context).primaryBackground,
+                      ),
+                      headingRowHeight: 56.0,
+                      dataRowColor: MaterialStateProperty.all(
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      dataRowHeight: 56.0,
+                      border: TableBorder(
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                      dividerThickness: 1.0,
+                      showBottomBorder: true,
+                      minWidth: 49.0,
+                    );
+                  },
                 ),
               ),
             ],

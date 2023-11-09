@@ -2,8 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/pages/developer_pages/map_component/map_component_widget.dart';
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'add_center_dialog_model.dart';
@@ -201,40 +199,6 @@ class _AddCenterDialogWidgetState extends State<AddCenterDialogWidget> {
                         _model.textController2Validator.asValidator(context),
                   ),
                 ),
-                Builder(
-                  builder: (context) => Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        await showAlignedDialog(
-                          context: context,
-                          isGlobal: true,
-                          avoidOverflow: false,
-                          targetAnchor: const AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
-                          followerAnchor: const AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
-                          builder: (dialogContext) {
-                            return const Material(
-                              color: Colors.transparent,
-                              child: MapComponentWidget(),
-                            );
-                          },
-                        ).then((value) => setState(() {}));
-                      },
-                      child: const Icon(
-                        Icons.my_location,
-                        color: Color(0xFF2A2A2A),
-                        size: 35.0,
-                      ),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 40.0, 0.0),
                   child: FFButtonWidget(
@@ -242,7 +206,7 @@ class _AddCenterDialogWidgetState extends State<AddCenterDialogWidget> {
                       var shouldSetState = false;
                       if (_model.textController1.text != '') {
                         if (_model.textController2.text != '') {
-                          if (!(FFAppState().location != null)) {
+                          if (!(FFAppState().location == null)) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -300,6 +264,8 @@ class _AddCenterDialogWidgetState extends State<AddCenterDialogWidget> {
                               ),
                             );
                           }
+
+                          FFAppState().update(() {});
                         } else {
                           if (shouldSetState) setState(() {});
                           return;
