@@ -70,6 +70,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'AddAdminsPage')
               : const AddAdminsPageWidget(),
+        ),
+        FFRoute(
+          name: 'AdminsPage',
+          path: '/adminsPage',
+          builder: (context, params) => AdminsPageWidget(
+            centerModel: params.getParam('centerModel', ParamType.JSON),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

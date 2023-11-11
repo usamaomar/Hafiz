@@ -42,3 +42,57 @@ List<CenterModelStruct> filterCenterModelList(
         item.phoneNumber.contains(searchText);
   }).toList();
 }
+
+List<UserModelStruct> convertFromFirebaseToUserList(
+    List<UserCollectionRecord> listOfUsersFromFireBase) {
+  List<UserModelStruct> listOfUsers = [];
+  for (UserCollectionRecord item in listOfUsersFromFireBase) {
+    listOfUsers.add(UserModelStruct(
+        displayName: item.displayName,
+        password: item.password,
+        phoneNumber: item.phoneNumber,
+        userType: item.userType));
+  }
+  return listOfUsers;
+}
+
+List<UserModelStruct> filterUserModelList(
+  List<UserModelStruct> originalList,
+  List<UserModelStruct> secondList,
+  String searchText,
+) {
+  if (searchText == null || searchText.isEmpty) {
+    return originalList;
+  }
+  return secondList.where((item) {
+    return item.displayName.toLowerCase().contains(searchText.toLowerCase()) ||
+        item.phoneNumber.contains(searchText);
+  }).toList();
+}
+
+String getUserTypeName(
+  String currentLanguge,
+  int type,
+) {
+  if (currentLanguge == "ar") {
+    return type == 0 ? "مبرمج" : (type == 1 ? "استاذ" : "ولي امر");
+  } else {
+    return type == 0 ? "Dev" : (type == 1 ? "Teacher" : "Parent");
+  }
+}
+
+int getDropType(String name) {
+  if (name == "Dev" || name == "مبرمج") {
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
+List<UserModelStruct> convertFromFireBaseToUserAndAddToList(
+  List<UserModelStruct> userAppStateList,
+  UserModelStruct userModelStruct,
+) {
+  userAppStateList.add(userModelStruct);
+  return userAppStateList;
+}

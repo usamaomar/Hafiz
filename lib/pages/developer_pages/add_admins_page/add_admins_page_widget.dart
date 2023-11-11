@@ -2,12 +2,17 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/developer_pages/add_user_dialog/add_user_dialog_widget.dart';
+import '/pages/developer_pages/asign_teatcher_dialog/asign_teatcher_dialog_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'add_admins_page_model.dart';
 export 'add_admins_page_model.dart';
@@ -32,6 +37,17 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.firebaseListOfUseres = await queryUserCollectionRecordOnce();
+      setState(() {
+        FFAppState().usereAppStateList = functions
+            .convertFromFirebaseToUserList(
+                _model.firebaseListOfUseres!.toList())
+            .toList()
+            .cast<UserModelStruct>();
+      });
+      setState(() {
+        _model.userLocalStateList =
+            FFAppState().usereAppStateList.toList().cast<UserModelStruct>();
+      });
     });
 
     _model.textController ??= TextEditingController();
@@ -70,7 +86,6 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: Column(
@@ -92,7 +107,17 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
                             const Duration(milliseconds: 400),
-                            () => setState(() {}),
+                            () async {
+                              setState(() {
+                                _model.userLocalStateList = functions
+                                    .filterUserModelList(
+                                        FFAppState().usereAppStateList.toList(),
+                                        _model.userLocalStateList.toList(),
+                                        _model.textController.text)
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+                            },
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
@@ -143,92 +168,198 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: FlutterFlowIconButton(
-                        borderColor: FlutterFlowTheme.of(context).secondaryText,
-                        borderRadius: 20.0,
-                        borderWidth: 1.0,
-                        buttonSize: 46.0,
-                        fillColor: Colors.white,
-                        icon: Icon(
-                          Icons.add,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
+                    Builder(
+                      builder: (context) => Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 0.0),
+                        child: FlutterFlowIconButton(
+                          borderColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                          borderRadius: 20.0,
+                          borderWidth: 1.0,
+                          buttonSize: 46.0,
+                          fillColor: Colors.white,
+                          icon: Icon(
+                            Icons.add,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 24.0,
+                          ),
+                          onPressed: () async {
+                            await showAlignedDialog(
+                              context: context,
+                              isGlobal: true,
+                              avoidOverflow: false,
+                              targetAnchor: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
+                              builder: (dialogContext) {
+                                return Material(
+                                  color: Colors.transparent,
+                                  child: GestureDetector(
+                                    onTap: () => _model
+                                            .unfocusNode.canRequestFocus
+                                        ? FocusScope.of(context)
+                                            .requestFocus(_model.unfocusNode)
+                                        : FocusScope.of(context).unfocus(),
+                                    child: const SizedBox(
+                                      height: 500.0,
+                                      child: AddUserDialogWidget(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ).then((value) => setState(() {}));
+                          },
                         ),
-                        onPressed: () {
-                          print('IconButton pressed ...');
-                        },
                       ),
                     ),
                   ],
                 ),
               ),
               Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final ert = FFAppState().listOfNames.toList();
-                    return DataTable2(
-                      columns: [
-                        DataColumn2(
-                          label: DefaultTextStyle.merge(
-                            softWrap: true,
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'y9lxu6r2' /* Center Name */,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                  child: Builder(
+                    builder: (context) {
+                      final dataTableList =
+                          _model.userLocalStateList.map((e) => e).toList();
+                      return DataTable2(
+                        columns: [
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'y9lxu6r2' /* Name */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                              style: FlutterFlowTheme.of(context).labelLarge,
                             ),
                           ),
-                        ),
-                        DataColumn2(
-                          label: DefaultTextStyle.merge(
-                            softWrap: true,
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '0a4cyotz' /* Phone Number */,
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '0a4cyotz' /* Phone Number */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                              style: FlutterFlowTheme.of(context).labelLarge,
                             ),
                           ),
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'aivrqb6f' /* Type */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
+                              ),
+                            ),
+                          ),
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'ogrnc2u2' /* Show */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
+                              ),
+                            ),
+                          ),
+                        ],
+                        rows: dataTableList
+                            .mapIndexed((dataTableListIndex,
+                                    dataTableListItem) =>
+                                [
+                                  Text(
+                                    dataTableListItem.displayName,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    dataTableListItem.phoneNumber,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    functions.getUserTypeName(
+                                        FFLocalizations.of(context)
+                                            .languageCode,
+                                        dataTableListItem.userType),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showAlignedDialog(
+                                          context: context,
+                                          isGlobal: true,
+                                          avoidOverflow: false,
+                                          targetAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          followerAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          builder: (dialogContext) {
+                                            return Material(
+                                              color: Colors.transparent,
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child:
+                                                    AsignTeatcherDialogWidget(
+                                                  userParams: dataTableListItem,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                      child: FaIcon(
+                                        FontAwesomeIcons.leanpub,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 24.0,
+                                      ),
+                                    ),
+                                  ),
+                                ].map((c) => DataCell(c)).toList())
+                            .map((e) => DataRow(cells: e))
+                            .toList(),
+                        headingRowColor: MaterialStateProperty.all(
+                          FlutterFlowTheme.of(context).primaryBackground,
                         ),
-                      ],
-                      rows: ert
-                          .mapIndexed((ertIndex, ertItem) => [
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'dokn39m2' /* Edit Column 1 */,
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                                Text(
-                                  FFLocalizations.of(context).getText(
-                                    'uv7yustd' /* Edit Column 2 */,
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ].map((c) => DataCell(c)).toList())
-                          .map((e) => DataRow(cells: e))
-                          .toList(),
-                      headingRowColor: MaterialStateProperty.all(
-                        FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      headingRowHeight: 56.0,
-                      dataRowColor: MaterialStateProperty.all(
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      dataRowHeight: 56.0,
-                      border: TableBorder(
-                        borderRadius: BorderRadius.circular(0.0),
-                      ),
-                      dividerThickness: 1.0,
-                      showBottomBorder: true,
-                      minWidth: 49.0,
-                    );
-                  },
+                        headingRowHeight: 56.0,
+                        dataRowColor: MaterialStateProperty.all(
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        dataRowHeight: 56.0,
+                        border: TableBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                        ),
+                        dividerThickness: 1.0,
+                        showBottomBorder: true,
+                        minWidth: 49.0,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

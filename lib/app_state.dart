@@ -94,6 +94,35 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInListOfPhoneNumbers(int index, String value) {
     _listOfPhoneNumbers.insert(index, value);
   }
+
+  List<UserModelStruct> _usereAppStateList = [];
+  List<UserModelStruct> get usereAppStateList => _usereAppStateList;
+  set usereAppStateList(List<UserModelStruct> value) {
+    _usereAppStateList = value;
+  }
+
+  void addToUsereAppStateList(UserModelStruct value) {
+    _usereAppStateList.add(value);
+  }
+
+  void removeFromUsereAppStateList(UserModelStruct value) {
+    _usereAppStateList.remove(value);
+  }
+
+  void removeAtIndexFromUsereAppStateList(int index) {
+    _usereAppStateList.removeAt(index);
+  }
+
+  void updateUsereAppStateListAtIndex(
+    int index,
+    UserModelStruct Function(UserModelStruct) updateFn,
+  ) {
+    _usereAppStateList[index] = updateFn(_usereAppStateList[index]);
+  }
+
+  void insertAtIndexInUsereAppStateList(int index, UserModelStruct value) {
+    _usereAppStateList.insert(index, value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

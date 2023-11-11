@@ -9,3 +9,5 @@ export '/pages/user_pages/user_home_page/user_home_page_widget.dart'
 export '/pages/splash_page/splash_page_widget.dart' show SplashPageWidget;
 export '/pages/developer_pages/add_admins_page/add_admins_page_widget.dart'
     show AddAdminsPageWidget;
+export '/pages/developer_pages/admins_page/admins_page_widget.dart'
+    show AdminsPageWidget;

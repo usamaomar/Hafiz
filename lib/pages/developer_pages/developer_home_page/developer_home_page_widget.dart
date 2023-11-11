@@ -232,65 +232,103 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                 ),
               ),
               Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final list = _model.localCenterList.map((e) => e).toList();
-                    return DataTable2(
-                      columns: [
-                        DataColumn2(
-                          label: DefaultTextStyle.merge(
-                            softWrap: true,
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '9r1hjcbs' /* Center Name */,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                  child: Builder(
+                    builder: (context) {
+                      final list =
+                          _model.localCenterList.map((e) => e).toList();
+                      return DataTable2(
+                        columns: [
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '9r1hjcbs' /* Center Name */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                              style: FlutterFlowTheme.of(context).labelLarge,
                             ),
                           ),
-                        ),
-                        DataColumn2(
-                          label: DefaultTextStyle.merge(
-                            softWrap: true,
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'nnv2dv3a' /* Phone Number */,
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'nnv2dv3a' /* Phone Number */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                              style: FlutterFlowTheme.of(context).labelLarge,
                             ),
                           ),
+                          DataColumn2(
+                            label: DefaultTextStyle.merge(
+                              softWrap: true,
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '2jluf0b5' /* Assign */,
+                                ),
+                                style: FlutterFlowTheme.of(context).labelLarge,
+                              ),
+                            ),
+                          ),
+                        ],
+                        rows: list
+                            .mapIndexed((listIndex, listItem) => [
+                                  Text(
+                                    listItem.name,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    listItem.phoneNumber,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                        'AdminsPage',
+                                        queryParameters: {
+                                          'centerModel': serializeParam(
+                                            listItem.toMap(),
+                                            ParamType.JSON,
+                                          ),
+                                        }.withoutNulls,
+                                      );
+                                    },
+                                    child: Icon(
+                                      Icons.storage,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                ].map((c) => DataCell(c)).toList())
+                            .map((e) => DataRow(cells: e))
+                            .toList(),
+                        headingRowColor: MaterialStateProperty.all(
+                          FlutterFlowTheme.of(context).primaryBackground,
                         ),
-                      ],
-                      rows: list
-                          .mapIndexed((listIndex, listItem) => [
-                                Text(
-                                  listItem.name,
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                                Text(
-                                  listItem.phoneNumber,
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                              ].map((c) => DataCell(c)).toList())
-                          .map((e) => DataRow(cells: e))
-                          .toList(),
-                      headingRowColor: MaterialStateProperty.all(
-                        FlutterFlowTheme.of(context).primaryBackground,
-                      ),
-                      headingRowHeight: 56.0,
-                      dataRowColor: MaterialStateProperty.all(
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      dataRowHeight: 56.0,
-                      border: TableBorder(
-                        borderRadius: BorderRadius.circular(0.0),
-                      ),
-                      dividerThickness: 1.0,
-                      showBottomBorder: true,
-                      minWidth: 49.0,
-                    );
-                  },
+                        headingRowHeight: 56.0,
+                        dataRowColor: MaterialStateProperty.all(
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        dataRowHeight: 56.0,
+                        border: TableBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                        ),
+                        dividerThickness: 1.0,
+                        showBottomBorder: true,
+                        minWidth: 49.0,
+                      );
+                    },
+                  ),
                 ),
               ),
             ],

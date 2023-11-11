@@ -153,6 +153,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Phone Number',
       'ar': 'رقم التليفون',
     },
+    '2jluf0b5': {
+      'en': 'Assign',
+      'ar': 'تعيين',
+    },
     '88ouvljg': {
       'en': '',
       'ar': '',
@@ -187,20 +191,47 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'y9lxu6r2': {
-      'en': 'Center Name',
-      'ar': 'اسم المركز',
+      'en': 'Name',
+      'ar': 'الاسم',
     },
     '0a4cyotz': {
       'en': 'Phone Number',
       'ar': 'رقم التليفون',
     },
-    'dokn39m2': {
-      'en': 'Edit Column 1',
+    'aivrqb6f': {
+      'en': 'Type',
+      'ar': 'النوع',
+    },
+    'ogrnc2u2': {
+      'en': 'Show',
+      'ar': 'يعرض',
+    },
+  },
+  // AdminsPage
+  {
+    '2i8cmryd': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    '2ixnse8s': {
+      'en': '',
       'ar': '',
     },
-    'uv7yustd': {
-      'en': 'Edit Column 2',
-      'ar': '',
+    'o80g1lva': {
+      'en': 'Name',
+      'ar': 'الاسم',
+    },
+    'esln3ehn': {
+      'en': 'Phone Number',
+      'ar': 'رقم التليفون',
+    },
+    '0couzkft': {
+      'en': '   ',
+      'ar': '   ',
+    },
+    'ck7fvure': {
+      'en': 'Save',
+      'ar': 'يحفظ',
     },
   },
   // sideComponent
@@ -233,11 +264,57 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'حفظ',
     },
   },
-  // MapComponent
+  // AddUserDialog
   {
-    '7e06yetq': {
-      'en': 'Set location',
-      'ar': 'حدد المكان',
+    'eocqudi3': {
+      'en': 'User Name',
+      'ar': 'اسم المستخدم',
+    },
+    'neyaxwn9': {
+      'en': 'Phone Number',
+      'ar': 'رقم الهاتف',
+    },
+    'v7bbtb0h': {
+      'en': 'password',
+      'ar': 'كلمة المرور',
+    },
+    '0kjr0ij7': {
+      'en': 'Developer',
+      'ar': 'مطور',
+    },
+    'yp1m6zfn': {
+      'en': 'Teacher',
+      'ar': 'استاذ',
+    },
+    'u1mju42u': {
+      'en': 'Select User Type',
+      'ar': 'حدد نوع المستخدم',
+    },
+    'eoq7zbgt': {
+      'en': 'Search for an item...',
+      'ar': '',
+    },
+    'q1t9aquy': {
+      'en': 'Save',
+      'ar': 'حفظ',
+    },
+  },
+  // AsignTeatcherDialog
+  {
+    'v4n60nw9': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+  },
+  // ShowTeatcherDialog
+  {
+    'l80jw1ao': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '7a2txfbm': {
+      'en': 'Add',
+      'ar': 'يضيف',
     },
   },
   // Miscellaneous

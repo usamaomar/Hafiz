@@ -1,10 +1,10 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'add_admins_page_widget.dart' show AddAdminsPageWidget;
+import 'admins_page_widget.dart' show AdminsPageWidget;
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 
-class AddAdminsPageModel extends FlutterFlowModel<AddAdminsPageWidget> {
+class AdminsPageModel extends FlutterFlowModel<AdminsPageWidget> {
   ///  Local state fields for this page.
 
   List<UserModelStruct> userLocalStateList = [];
@@ -20,15 +20,25 @@ class AddAdminsPageModel extends FlutterFlowModel<AddAdminsPageWidget> {
           int index, Function(UserModelStruct) updateFn) =>
       userLocalStateList[index] = updateFn(userLocalStateList[index]);
 
+  DocumentReference? userRefrence;
+
+  DocumentReference? centerRefrence;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Firestore Query - Query a collection] action in AddAdminsPage widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in AdminsPage widget.
   List<UserCollectionRecord>? firebaseListOfUseres;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in Text widget.
+  CenterCollectionRecord? centerDocument;
+  // Stores action output result for [Firestore Query - Query a collection] action in Text widget.
+  UserCollectionRecord? userDocument;
+  // Stores action output result for [Backend Call - Create Document] action in Text widget.
+  ConnectTeacherToCenterRecord? refres;
 
   /// Initialization and disposal methods.
 
