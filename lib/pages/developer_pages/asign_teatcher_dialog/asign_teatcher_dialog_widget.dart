@@ -45,7 +45,7 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
-      await queryConnectTeacherToCenterRecordOnce(
+      _model.dataToGetList = await queryConnectTeacherToCenterRecordOnce(
         queryBuilder: (connectTeacherToCenterRecord) =>
             connectTeacherToCenterRecord.where(
           'teacher_reference',

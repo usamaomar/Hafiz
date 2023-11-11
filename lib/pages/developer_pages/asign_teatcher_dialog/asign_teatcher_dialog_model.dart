@@ -9,6 +9,8 @@ class AsignTeatcherDialogModel
 
   // Stores action output result for [Firestore Query - Query a collection] action in AsignTeatcherDialog widget.
   UserCollectionRecord? userFirestoreRefs;
+  // Stores action output result for [Firestore Query - Query a collection] action in AsignTeatcherDialog widget.
+  List<ConnectTeacherToCenterRecord>? dataToGetList;
 
   /// Initialization and disposal methods.
 
