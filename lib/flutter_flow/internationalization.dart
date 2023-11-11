@@ -301,14 +301,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // AsignTeatcherDialog
   {
-    'v4n60nw9': {
+    'nby8oskd': {
       'en': 'Hello World',
       'ar': '',
     },
   },
   // ShowTeatcherDialog
   {
-    'l80jw1ao': {
+    'ziwspbvu': {
       'en': 'Hello World',
       'ar': '',
     },

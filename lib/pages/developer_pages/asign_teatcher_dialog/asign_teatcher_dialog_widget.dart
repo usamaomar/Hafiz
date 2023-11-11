@@ -1,7 +1,10 @@
-import '/backend/schema/structs/index.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'asign_teatcher_dialog_model.dart';
 export 'asign_teatcher_dialog_model.dart';
@@ -32,6 +35,20 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AsignTeatcherDialogModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.userFirestoreRefs = await queryUserCollectionRecordOnce(
+        queryBuilder: (userCollectionRecord) => userCollectionRecord.where(
+          'phone_number',
+          isEqualTo: widget.userParams?.phoneNumber,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+      await actions.getTeachersForCenter(
+        _model.userFirestoreRefs!.reference.id,
+      );
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -134,7 +151,7 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'v4n60nw9' /* Hello World */,
+                                      'nby8oskd' /* Hello World */,
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,

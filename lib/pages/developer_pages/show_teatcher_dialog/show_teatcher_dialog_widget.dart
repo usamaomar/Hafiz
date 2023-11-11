@@ -157,7 +157,7 @@ class _ShowTeatcherDialogWidgetState extends State<ShowTeatcherDialogWidget> {
                                 children: [
                                   Text(
                                     FFLocalizations.of(context).getText(
-                                      'l80jw1ao' /* Hello World */,
+                                      'ziwspbvu' /* Hello World */,
                                     ),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,

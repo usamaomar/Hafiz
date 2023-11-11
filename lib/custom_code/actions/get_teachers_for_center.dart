@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<List<dynamic>?> getTeachersForCenter(String centerReference) async {
+Future<List<dynamic>?> getTeachersForCenter(String teacherReference) async {
   List<dynamic> teachersList = [];
 
   // Initialize Firebase
@@ -24,24 +24,24 @@ Future<List<dynamic>?> getTeachersForCenter(String centerReference) async {
 
     // Create a query to filter documents based on the center_reference
     QuerySnapshot querySnapshot = await connectTeacherToCenterCollection
-        .where("center_reference", isEqualTo: centerReference)
+        .where("teacher_reference", isEqualTo: teacherReference)
         .get();
 
     for (QueryDocumentSnapshot doc in querySnapshot.docs) {
       // Get the teacher_reference from each document
-      String teacherReference = doc.get("teacher_reference");
+      String centerReference = doc.get("center_reference");
 
       // Create a reference to the "teacherCollection"
-      CollectionReference teacherCollection =
-          firestore.collection("teacherCollection");
+      CollectionReference centerCollection =
+          firestore.collection("centerCollection");
 
       // Fetch the teacher's data using the teacher_reference
-      DocumentSnapshot teacherSnapshot =
-          await teacherCollection.doc(teacherReference).get();
+      DocumentSnapshot centerReSnapShots =
+          await centerCollection.doc(centerReference).get();
 
-      if (teacherSnapshot.exists) {
+      if (centerReSnapShots.exists) {
         Map<String, dynamic> teacherData =
-            teacherSnapshot.data() as Map<String, dynamic>;
+            centerReSnapShots.data() as Map<String, dynamic>;
         teachersList.add(teacherData);
       }
     }
