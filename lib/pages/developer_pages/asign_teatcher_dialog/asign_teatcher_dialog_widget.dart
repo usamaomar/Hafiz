@@ -45,6 +45,13 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
+      await queryConnectTeacherToCenterRecordOnce(
+        queryBuilder: (connectTeacherToCenterRecord) =>
+            connectTeacherToCenterRecord.where(
+          'teacher_reference',
+          isEqualTo: _model.userFirestoreRefs?.reference,
+        ),
+      );
       await actions.getTeachersForCenter(
         _model.userFirestoreRefs!.reference.id,
       );
