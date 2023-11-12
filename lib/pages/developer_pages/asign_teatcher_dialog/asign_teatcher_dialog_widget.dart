@@ -1,7 +1,6 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -51,9 +50,6 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
           'teacher_reference',
           isEqualTo: _model.userFirestoreRefs?.reference,
         ),
-      );
-      await actions.getTeachersForCenter(
-        _model.userFirestoreRefs!.reference.id,
       );
     });
 
@@ -137,37 +133,48 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
-                      child: ListView(
-                        padding: EdgeInsets.zero,
-                        scrollDirection: Axis.vertical,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(5.0),
-                              border: Border.all(
-                                color: const Color(0xFF363636),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 15.0, 15.0, 15.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    FFLocalizations.of(context).getText(
-                                      'nby8oskd' /* Hello World */,
-                                    ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                      child: Builder(
+                        builder: (context) {
+                          final listApis = _model.dataToGetList
+                                  ?.map((e) => e)
+                                  .toList()
+                                  .toList() ??
+                              [];
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listApis.length,
+                            itemBuilder: (context, listApisIndex) {
+                              final listApisItem = listApis[listApisIndex];
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(5.0),
+                                  border: Border.all(
+                                    color: const Color(0xFF363636),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 15.0, 15.0, 15.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        FFLocalizations.of(context).getText(
+                                          'nby8oskd' /* Hello World */,
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                   ],

@@ -96,3 +96,29 @@ List<UserModelStruct> convertFromFireBaseToUserAndAddToList(
   userAppStateList.add(userModelStruct);
   return userAppStateList;
 }
+
+List<CenterModelStruct> convertFromFirebaseToCenterList(
+    List<CenterCollectionRecord> centerFirebaseList) {
+  List<CenterModelStruct> listOfCenters = [];
+  for (CenterCollectionRecord item in centerFirebaseList) {
+    listOfCenters.add(CenterModelStruct(
+        name: item.name,
+        centerReference: item.reference,
+        phoneNumber: item.phoneNumber));
+  }
+  return listOfCenters;
+}
+
+CenterModelStruct getCenterModel(
+  List<CenterModelStruct> listOfAppStateCenterModels,
+  DocumentReference referenceNumber,
+) {
+  for (var centerModel in listOfAppStateCenterModels) {
+    if (centerModel.referenceNumber == referenceNumber) {
+      return centerModel;
+    }
+  }
+
+  // If no match is found, you can return null or handle it as per your requirement
+  return null;
+}

@@ -47,6 +47,8 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
             .toList()
             .toList()
             .cast<String>();
+        FFAppState().appStateCenterList =
+            FFAppState().appStateCenterList.toList().cast<CenterModelStruct>();
       });
       setState(() {
         _model.localCenterList = functions

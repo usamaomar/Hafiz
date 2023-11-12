@@ -123,6 +123,35 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInUsereAppStateList(int index, UserModelStruct value) {
     _usereAppStateList.insert(index, value);
   }
+
+  List<CenterModelStruct> _appStateCenterList = [];
+  List<CenterModelStruct> get appStateCenterList => _appStateCenterList;
+  set appStateCenterList(List<CenterModelStruct> value) {
+    _appStateCenterList = value;
+  }
+
+  void addToAppStateCenterList(CenterModelStruct value) {
+    _appStateCenterList.add(value);
+  }
+
+  void removeFromAppStateCenterList(CenterModelStruct value) {
+    _appStateCenterList.remove(value);
+  }
+
+  void removeAtIndexFromAppStateCenterList(int index) {
+    _appStateCenterList.removeAt(index);
+  }
+
+  void updateAppStateCenterListAtIndex(
+    int index,
+    CenterModelStruct Function(CenterModelStruct) updateFn,
+  ) {
+    _appStateCenterList[index] = updateFn(_appStateCenterList[index]);
+  }
+
+  void insertAtIndexInAppStateCenterList(int index, CenterModelStruct value) {
+    _appStateCenterList.insert(index, value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
