@@ -114,11 +114,11 @@ CenterModelStruct getCenterModel(
   DocumentReference referenceNumber,
 ) {
   for (var centerModel in listOfAppStateCenterModels) {
-    if (centerModel.referenceNumber == referenceNumber) {
+    if (centerModel.centerReference == referenceNumber) {
       return centerModel;
     }
   }
 
   // If no match is found, you can return null or handle it as per your requirement
-  return null;
+  return CenterModelStruct();
 }

@@ -299,13 +299,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'حفظ',
     },
   },
-  // AsignTeatcherDialog
-  {
-    'nby8oskd': {
-      'en': 'Hello World',
-      'ar': '',
-    },
-  },
   // ShowTeatcherDialog
   {
     'ziwspbvu': {
