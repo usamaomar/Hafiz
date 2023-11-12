@@ -163,17 +163,13 @@ class _AsignTeatcherDialogWidgetState extends State<AsignTeatcherDialogWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Text(
-                                        valueOrDefault<String>(
-                                          functions
-                                              .getCenterModel(
-                                                  FFAppState()
-                                                      .appStateCenterList
-                                                      .toList(),
-                                                  listApisItem.centerRefrence!)
-                                              .centerReference
-                                              ?.id,
-                                          'ss',
-                                        ),
+                                        functions
+                                            .getCenterModel(
+                                                FFAppState()
+                                                    .appStateCenterList
+                                                    .toList(),
+                                                listApisItem.centerRefrence!)
+                                            .name,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                       ),
