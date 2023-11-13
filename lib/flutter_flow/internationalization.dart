@@ -222,10 +222,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '   ',
       'ar': '   ',
     },
-    'ck7fvure': {
-      'en': 'Save',
-      'ar': 'يحفظ',
-    },
   },
   // AdminHomePage
   {
@@ -264,10 +260,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Phone Number : ',
       'ar': 'رقم التليفون :',
     },
-    'h06lj9e7': {
-      'en': 'Phone Number : ',
-      'ar': 'رقم التليفون :',
-    },
     'lx60tis1': {
       'en': 'Fathers Name',
       'ar': 'اسم ولي الامر',
@@ -286,6 +278,29 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '79hjq5uh': {
       'en': 'Home',
       'ar': '',
+    },
+  },
+  // AddSonePage
+  {
+    'bwttkwp4': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    'ncmepp6f': {
+      'en': '',
+      'ar': '',
+    },
+    '9i2zxeaw': {
+      'en': 'Son Name : ',
+      'ar': 'اسم الحافظ :',
+    },
+    'v4h6wpge': {
+      'en': 'Age : ',
+      'ar': 'عمر :',
+    },
+    'fvxw07fz': {
+      'en': 'Haves Name',
+      'ar': 'اسم الحافظ',
     },
   },
   // sideComponent
@@ -397,6 +412,89 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'كلمة المرور',
     },
     '2eij2cop': {
+      'en': 'Save',
+      'ar': 'حفظ',
+    },
+  },
+  // AddSoneDialog
+  {
+    'd4idxgat': {
+      'en': 'Sone Name',
+      'ar': 'اسم الحافظ',
+    },
+    'xxsgb6la': {
+      'en': '5',
+      'ar': '',
+    },
+    '6qlp4gna': {
+      'en': '6',
+      'ar': '',
+    },
+    'vhxrhcs2': {
+      'en': '7',
+      'ar': '',
+    },
+    'v9i36wsg': {
+      'en': '8',
+      'ar': '',
+    },
+    '8fdmlitv': {
+      'en': '9',
+      'ar': '',
+    },
+    'psuan6ak': {
+      'en': '10',
+      'ar': '',
+    },
+    'ra0qtayd': {
+      'en': '11',
+      'ar': '',
+    },
+    '5yywswql': {
+      'en': '12',
+      'ar': '',
+    },
+    'wfsnel8q': {
+      'en': '13',
+      'ar': '',
+    },
+    'f0mdtmfk': {
+      'en': '14',
+      'ar': '',
+    },
+    'bfsn3dwx': {
+      'en': '15',
+      'ar': '',
+    },
+    'dcht3ugl': {
+      'en': '16',
+      'ar': '',
+    },
+    'xdlsxt3v': {
+      'en': '17',
+      'ar': '',
+    },
+    'zhwcu792': {
+      'en': '18',
+      'ar': '',
+    },
+    'mbkrk4kq': {
+      'en': '19',
+      'ar': '',
+    },
+    'vegszlmv': {
+      'en': '20',
+      'ar': '',
+    },
+    'qy2u5co4': {
+      'en': 'Age',
+      'ar': 'عمر',
+    },
+    'gzevnvv0': {
+      'en': 'Search for an item...',
+      'ar': '',
+    },
+    '0tunl9xu': {
       'en': 'Save',
       'ar': 'حفظ',
     },

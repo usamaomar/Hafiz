@@ -19,11 +19,28 @@ class AdminHomePageModel extends FlutterFlowModel<AdminHomePageWidget> {
           int index, Function(CenterModelStruct) updateFn) =>
       localCenterList[index] = updateFn(localCenterList[index]);
 
+  List<CenterCollectionRecord> localListOfCenterDocuments = [];
+  void addToLocalListOfCenterDocuments(CenterCollectionRecord item) =>
+      localListOfCenterDocuments.add(item);
+  void removeFromLocalListOfCenterDocuments(CenterCollectionRecord item) =>
+      localListOfCenterDocuments.remove(item);
+  void removeAtIndexFromLocalListOfCenterDocuments(int index) =>
+      localListOfCenterDocuments.removeAt(index);
+  void insertAtIndexInLocalListOfCenterDocuments(
+          int index, CenterCollectionRecord item) =>
+      localListOfCenterDocuments.insert(index, item);
+  void updateLocalListOfCenterDocumentsAtIndex(
+          int index, Function(CenterCollectionRecord) updateFn) =>
+      localListOfCenterDocuments[index] =
+          updateFn(localListOfCenterDocuments[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Firestore Query - Query a collection] action in AdminHomePage widget.
-  List<CenterCollectionRecord>? listOfFirebaseCenters;
+  List<CenterCollectionRecord>? listOfFirebaseCentersReferences;
+  // Stores action output result for [Firestore Query - Query a collection] action in AdminHomePage widget.
+  List<ConnectTeacherToCenterRecord>? listOfCentersRefrences;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

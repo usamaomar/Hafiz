@@ -16,9 +16,11 @@ class AdminsPageWidget extends StatefulWidget {
   const AdminsPageWidget({
     super.key,
     required this.centerModel,
+    this.centerDocument,
   });
 
   final dynamic centerModel;
+  final CenterCollectionRecord? centerDocument;
 
   @override
   _AdminsPageWidgetState createState() => _AdminsPageWidgetState();
@@ -250,39 +252,15 @@ class _AdminsPageWidgetState extends State<AdminsPageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      _model.centerDocument =
-                                          await queryCenterCollectionRecordOnce(
-                                        queryBuilder:
-                                            (centerCollectionRecord) =>
-                                                centerCollectionRecord.where(
-                                          'phone_number',
-                                          isEqualTo: (widget.centerModel !=
-                                                          null &&
-                                                      widget.centerModel != ''
-                                                  ? CenterModelStruct.fromMap(
-                                                      widget.centerModel)
-                                                  : null)
-                                              ?.phoneNumber,
-                                        ),
-                                        singleRecord: true,
-                                      ).then((s) => s.firstOrNull);
                                       setState(() {
                                         _model.centerRefrence =
-                                            _model.centerDocument?.reference;
+                                            _model.centerRefrence;
                                       });
-                                      _model.userDocument =
-                                          await queryUserCollectionRecordOnce(
-                                        queryBuilder: (userCollectionRecord) =>
-                                            userCollectionRecord.where(
-                                          'phone_number',
-                                          isEqualTo:
-                                              dataTableListItem.phoneNumber,
-                                        ),
-                                        singleRecord: true,
-                                      ).then((s) => s.firstOrNull);
                                       setState(() {
-                                        _model.userRefrence =
-                                            _model.userDocument?.reference;
+                                        _model.userRefrence = _model
+                                            .useresDocumnetsList[
+                                                dataTableListIndex]
+                                            .reference;
                                       });
 
                                       var connectTeacherToCenterRecordReference =
@@ -309,9 +287,10 @@ class _AdminsPageWidgetState extends State<AdminsPageWidget> {
                                       setState(() {});
                                     },
                                     child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'ck7fvure' /* Save */,
-                                      ),
+                                      '${FFLocalizations.of(context).getVariableText(
+                                        enText: 'Add to ',
+                                        arText: 'اضافه ل ',
+                                      )}${(widget.centerModel != null && widget.centerModel != '' ? CenterModelStruct.fromMap(widget.centerModel) : null)?.name}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),

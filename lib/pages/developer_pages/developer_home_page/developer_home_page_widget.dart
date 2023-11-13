@@ -54,6 +54,11 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
             .cast<CenterModelStruct>();
       });
       setState(() {
+        _model.localDocumentList = _model.listOfFirebaseCenters!
+            .toList()
+            .cast<CenterCollectionRecord>();
+      });
+      setState(() {
         _model.localCenterList = functions
             .combineStringLists(FFAppState().listOfNames.toList(),
                 FFAppState().listOfPhoneNumbers.toList())
@@ -322,7 +327,15 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                                             listItem.toMap(),
                                             ParamType.JSON,
                                           ),
+                                          'centerDocument': serializeParam(
+                                            _model.localDocumentList[listIndex],
+                                            ParamType.Document,
+                                          ),
                                         }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'centerDocument': _model
+                                              .localDocumentList[listIndex],
+                                        },
                                       );
                                     },
                                     child: Icon(

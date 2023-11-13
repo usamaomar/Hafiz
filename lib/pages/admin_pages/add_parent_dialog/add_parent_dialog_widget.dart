@@ -11,10 +11,10 @@ export 'add_parent_dialog_model.dart';
 class AddParentDialogWidget extends StatefulWidget {
   const AddParentDialogWidget({
     super.key,
-    required this.centerJsonModel,
+    required this.centerReference,
   });
 
-  final dynamic centerJsonModel;
+  final DocumentReference? centerReference;
 
   @override
   _AddParentDialogWidgetState createState() => _AddParentDialogWidgetState();
@@ -294,13 +294,7 @@ class _AddParentDialogWidgetState extends State<AddParentDialogWidget> {
                               userType: 2,
                               adminReference:
                                   FFAppState().userModel.modelReference,
-                              centerReference:
-                                  (widget.centerJsonModel != null &&
-                                              widget.centerJsonModel != ''
-                                          ? CenterModelStruct.fromMap(
-                                              widget.centerJsonModel)
-                                          : null)
-                                      ?.modelReference,
+                              centerReference: widget.centerReference,
                             ));
                             _model.addparentCollection =
                                 UserCollectionRecord.getDocumentFromData(
@@ -312,14 +306,7 @@ class _AddParentDialogWidgetState extends State<AddParentDialogWidget> {
                                       userType: 2,
                                       adminReference:
                                           FFAppState().userModel.modelReference,
-                                      centerReference:
-                                          (widget.centerJsonModel != null &&
-                                                      widget.centerJsonModel !=
-                                                          ''
-                                                  ? CenterModelStruct.fromMap(
-                                                      widget.centerJsonModel)
-                                                  : null)
-                                              ?.modelReference,
+                                      centerReference: widget.centerReference,
                                     ),
                                     userCollectionRecordReference);
                             shouldSetState = true;

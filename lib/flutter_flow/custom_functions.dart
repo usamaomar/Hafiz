@@ -126,3 +126,35 @@ CenterModelStruct getCenterModel(
 bool? isValidNumber(String? number) {
   return (number?.startsWith('0') ?? false) && number?.length == 10;
 }
+
+List<CenterCollectionRecord>? getListOfCenterRefrences(
+  List<ConnectTeacherToCenterRecord>? listOfReferences,
+  List<CenterCollectionRecord>? listOfCenters,
+) {
+  if (listOfReferences == null ||
+      listOfCenters == null ||
+      listOfReferences.isEmpty ||
+      listOfCenters.isEmpty) {
+    return null;
+  }
+
+  List<CenterCollectionRecord> result = [];
+
+  // Iterate through the listOfReferences
+  for (int i = 0; i < listOfReferences.length; i++) {
+    ConnectTeacherToCenterRecord reference = listOfReferences[i];
+
+    // Check if the reference exists in listOfCenters
+    if (listOfCenters
+        .any((center) => center.reference == reference.centerRefrence)) {
+      // If not already added, add it to the result list
+      if (!result
+          .any((center) => center.reference == reference.centerRefrence)) {
+        result.add(listOfCenters.firstWhere(
+            (center) => center.reference == reference.centerRefrence));
+      }
+    }
+  }
+
+  return result;
+}

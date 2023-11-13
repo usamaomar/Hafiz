@@ -2,7 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin_pages/add_parent_dialog/add_parent_dialog_widget.dart';
+import '/pages/admin_pages/add_sone_dialog/add_sone_dialog_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -10,30 +10,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'add_parent_page_model.dart';
-export 'add_parent_page_model.dart';
+import 'add_sone_page_model.dart';
+export 'add_sone_page_model.dart';
 
-class AddParentPageWidget extends StatefulWidget {
-  const AddParentPageWidget({
+class AddSonePageWidget extends StatefulWidget {
+  const AddSonePageWidget({
     super.key,
     required this.centerReference,
+    required this.parentReferences,
   });
 
   final DocumentReference? centerReference;
+  final DocumentReference? parentReferences;
 
   @override
-  _AddParentPageWidgetState createState() => _AddParentPageWidgetState();
+  _AddSonePageWidgetState createState() => _AddSonePageWidgetState();
 }
 
-class _AddParentPageWidgetState extends State<AddParentPageWidget> {
-  late AddParentPageModel _model;
+class _AddSonePageWidgetState extends State<AddSonePageWidget> {
+  late AddSonePageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddParentPageModel());
+    _model = createModel(context, () => AddSonePageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -41,11 +43,15 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
         queryBuilder: (userCollectionRecord) => userCollectionRecord
             .where(
               'user_type',
-              isEqualTo: 2,
+              isEqualTo: 3,
             )
             .where(
               'center_reference',
               isEqualTo: widget.centerReference,
+            )
+            .where(
+              'parents_reference',
+              isEqualTo: widget.parentReferences,
             ),
       );
       setState(() {
@@ -66,7 +72,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
           _model.textController?.text = FFLocalizations.of(context).getText(
-            'vwppl9fp' /*  */,
+            'ncmepp6f' /*  */,
           );
         }));
   }
@@ -116,7 +122,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'lx60tis1' /* Fathers Name */,
+              'fvxw07fz' /* Haves Name */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
@@ -166,7 +172,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                             labelStyle:
                                 FlutterFlowTheme.of(context).labelMedium,
                             hintText: FFLocalizations.of(context).getText(
-                              'x29m9huv' /* Search */,
+                              'bwttkwp4' /* Search */,
                             ),
                             hintStyle: FlutterFlowTheme.of(context).labelMedium,
                             enabledBorder: OutlineInputBorder(
@@ -213,7 +219,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                     Builder(
                       builder: (context) => Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
-                            20.0, 0.0, 20.0, 0.0),
+                            20.0, 0.0, 20.0, 5.0),
                         child: FlutterFlowIconButton(
                           borderColor:
                               FlutterFlowTheme.of(context).secondaryText,
@@ -222,7 +228,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                           buttonSize: 46.0,
                           fillColor: Colors.white,
                           icon: Icon(
-                            Icons.add,
+                            Icons.group_add,
                             color: FlutterFlowTheme.of(context).primaryText,
                             size: 24.0,
                           ),
@@ -246,9 +252,11 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                         : FocusScope.of(context).unfocus(),
                                     child: SizedBox(
                                       height: 500.0,
-                                      child: AddParentDialogWidget(
+                                      child: AddSoneDialogWidget(
                                         centerReference:
                                             widget.centerReference!,
+                                        parentReferences:
+                                            widget.parentReferences!,
                                       ),
                                     ),
                                   ),
@@ -290,7 +298,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                     ParamType.DocumentReference,
                                   ),
                                   'parentReferences': serializeParam(
-                                    dataListItem.modelReference,
+                                    widget.parentReferences,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -315,7 +323,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                       children: [
                                         Text(
                                           FFLocalizations.of(context).getText(
-                                            'xn65tho4' /* Parent Name :  */,
+                                            '9i2zxeaw' /* Son Name :  */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -341,7 +349,7 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                       children: [
                                         Text(
                                           FFLocalizations.of(context).getText(
-                                            'dbouzltw' /* Phone Number :  */,
+                                            'v4h6wpge' /* Age :  */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -352,11 +360,32 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                               ),
                                         ),
                                         Text(
-                                          dataListItem.phoneNumber,
+                                          dataListItem.userType.toString(),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
                                       ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 0.0, 20.0, 5.0),
+                                    child: FlutterFlowIconButton(
+                                      borderColor: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      borderRadius: 20.0,
+                                      borderWidth: 1.0,
+                                      buttonSize: 46.0,
+                                      fillColor: Colors.white,
+                                      icon: Icon(
+                                        Icons.chrome_reader_mode_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 24.0,
+                                      ),
+                                      onPressed: () {
+                                        print('IconButton pressed ...');
+                                      },
                                     ),
                                   ),
                                 ],

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -69,8 +70,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AdminsPage',
           path: '/adminsPage',
+          asyncParams: {
+            'centerDocument': getDoc(
+                ['centerCollection'], CenterCollectionRecord.fromSnapshot),
+          },
           builder: (context, params) => AdminsPageWidget(
             centerModel: params.getParam('centerModel', ParamType.JSON),
+            centerDocument:
+                params.getParam('centerDocument', ParamType.Document),
           ),
         ),
         FFRoute(
@@ -82,13 +89,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AddParentPage',
           path: '/addParentPage',
           builder: (context, params) => AddParentPageWidget(
-            centerJsonModel: params.getParam('centerJsonModel', ParamType.JSON),
+            centerReference: params.getParam('centerReference',
+                ParamType.DocumentReference, false, ['centerCollection']),
           ),
         ),
         FFRoute(
           name: 'SettingsPage',
           path: '/settingsPage',
           builder: (context, params) => const SettingsPageWidget(),
+        ),
+        FFRoute(
+          name: 'AddSonePage',
+          path: '/addSonePage',
+          builder: (context, params) => AddSonePageWidget(
+            centerReference: params.getParam('centerReference',
+                ParamType.DocumentReference, false, ['centerCollection']),
+            parentReferences: params.getParam('parentReferences',
+                ParamType.DocumentReference, false, ['userCollection']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

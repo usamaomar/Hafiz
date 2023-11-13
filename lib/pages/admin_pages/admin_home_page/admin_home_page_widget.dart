@@ -29,21 +29,27 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.listOfFirebaseCenters = await queryCenterCollectionRecordOnce();
+      _model.listOfFirebaseCentersReferences =
+          await queryCenterCollectionRecordOnce();
+      _model.listOfCentersRefrences =
+          await queryConnectTeacherToCenterRecordOnce(
+        queryBuilder: (connectTeacherToCenterRecord) =>
+            connectTeacherToCenterRecord.where(
+          'teacher_reference',
+          isEqualTo: FFAppState().userModel.modelReference,
+        ),
+      );
       setState(() {
-        FFAppState().listOfNames = _model.listOfFirebaseCenters!
-            .map((e) => e.name)
+        _model.localListOfCenterDocuments = functions
+            .getListOfCenterRefrences(_model.listOfCentersRefrences?.toList(),
+                _model.listOfFirebaseCentersReferences?.toList())!
             .toList()
-            .toList()
-            .cast<String>();
-        FFAppState().listOfPhoneNumbers = _model.listOfFirebaseCenters!
-            .map((e) => e.phoneNumber)
-            .toList()
-            .toList()
-            .cast<String>();
+            .cast<CenterCollectionRecord>();
+      });
+      setState(() {
         FFAppState().appStateCenterList = functions
             .convertFromFirebaseToCenterList(
-                _model.listOfFirebaseCenters!.toList())
+                _model.localListOfCenterDocuments.toList())
             .toList()
             .cast<CenterModelStruct>();
       });
@@ -254,9 +260,9 @@ class _AdminHomePageWidgetState extends State<AdminHomePageWidget> {
                                 context.pushNamed(
                                   'AddParentPage',
                                   queryParameters: {
-                                    'centerJsonModel': serializeParam(
-                                      gridListItem.toMap(),
-                                      ParamType.JSON,
+                                    'centerReference': serializeParam(
+                                      gridListItem.modelReference,
+                                      ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
                                 );

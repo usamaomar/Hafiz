@@ -20,6 +20,20 @@ class DeveloperHomePageModel extends FlutterFlowModel<DeveloperHomePageWidget> {
           int index, Function(CenterModelStruct) updateFn) =>
       localCenterList[index] = updateFn(localCenterList[index]);
 
+  List<CenterCollectionRecord> localDocumentList = [];
+  void addToLocalDocumentList(CenterCollectionRecord item) =>
+      localDocumentList.add(item);
+  void removeFromLocalDocumentList(CenterCollectionRecord item) =>
+      localDocumentList.remove(item);
+  void removeAtIndexFromLocalDocumentList(int index) =>
+      localDocumentList.removeAt(index);
+  void insertAtIndexInLocalDocumentList(
+          int index, CenterCollectionRecord item) =>
+      localDocumentList.insert(index, item);
+  void updateLocalDocumentListAtIndex(
+          int index, Function(CenterCollectionRecord) updateFn) =>
+      localDocumentList[index] = updateFn(localDocumentList[index]);
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

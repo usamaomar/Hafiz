@@ -19,6 +19,11 @@ class CenterCollectionRecord extends FirestoreRecord {
   String get name => _name ?? '';
   bool hasName() => _name != null;
 
+  // "location" field.
+  LatLng? _location;
+  LatLng? get location => _location;
+  bool hasLocation() => _location != null;
+
   // "phone_number" field.
   String? _phoneNumber;
   String get phoneNumber => _phoneNumber ?? '';
@@ -26,6 +31,7 @@ class CenterCollectionRecord extends FirestoreRecord {
 
   void _initializeFields() {
     _name = snapshotData['name'] as String?;
+    _location = snapshotData['location'] as LatLng?;
     _phoneNumber = snapshotData['phone_number'] as String?;
   }
 
@@ -66,11 +72,13 @@ class CenterCollectionRecord extends FirestoreRecord {
 
 Map<String, dynamic> createCenterCollectionRecordData({
   String? name,
+  LatLng? location,
   String? phoneNumber,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'name': name,
+      'location': location,
       'phone_number': phoneNumber,
     }.withoutNulls,
   );
@@ -84,12 +92,14 @@ class CenterCollectionRecordDocumentEquality
 
   @override
   bool equals(CenterCollectionRecord? e1, CenterCollectionRecord? e2) {
-    return e1?.name == e2?.name && e1?.phoneNumber == e2?.phoneNumber;
+    return e1?.name == e2?.name &&
+        e1?.location == e2?.location &&
+        e1?.phoneNumber == e2?.phoneNumber;
   }
 
   @override
   int hash(CenterCollectionRecord? e) =>
-      const ListEquality().hash([e?.name, e?.phoneNumber]);
+      const ListEquality().hash([e?.name, e?.location, e?.phoneNumber]);
 
   @override
   bool isValidKey(Object? o) => o is CenterCollectionRecord;

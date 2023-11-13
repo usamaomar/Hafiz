@@ -110,6 +110,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           onTap: () async {
                             setState(() {
                               FFAppState().userModel = UserModelStruct();
+                              FFAppState().location = null;
+                              FFAppState().listOfNames = [];
+                              FFAppState().listOfPhoneNumbers = [];
+                              FFAppState().usereAppStateList = [];
+                              FFAppState().appStateCenterList = [];
                             });
                             if (Navigator.of(context).canPop()) {
                               context.pop();
