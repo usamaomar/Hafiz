@@ -229,7 +229,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ..createdTime = _model.apiResultccq?.createdTime
                                 ..password = _model.apiResultccq?.password
                                 ..phoneNumber = _model.apiResultccq?.phoneNumber
-                                ..userType = _model.apiResultccq?.userType,
+                                ..userType = _model.apiResultccq?.userType
+                                ..modelReference =
+                                    _model.apiResultccq?.reference,
                             );
                           });
                           if (_model.apiResultccq?.userType == 0) {

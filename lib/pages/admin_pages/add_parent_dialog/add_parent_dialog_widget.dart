@@ -1,24 +1,27 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'add_user_dialog_model.dart';
-export 'add_user_dialog_model.dart';
+import 'add_parent_dialog_model.dart';
+export 'add_parent_dialog_model.dart';
 
-class AddUserDialogWidget extends StatefulWidget {
-  const AddUserDialogWidget({super.key});
+class AddParentDialogWidget extends StatefulWidget {
+  const AddParentDialogWidget({
+    super.key,
+    required this.centerJsonModel,
+  });
+
+  final dynamic centerJsonModel;
 
   @override
-  _AddUserDialogWidgetState createState() => _AddUserDialogWidgetState();
+  _AddParentDialogWidgetState createState() => _AddParentDialogWidgetState();
 }
 
-class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
-  late AddUserDialogModel _model;
+class _AddParentDialogWidgetState extends State<AddParentDialogWidget> {
+  late AddParentDialogModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -29,7 +32,7 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddUserDialogModel());
+    _model = createModel(context, () => AddParentDialogModel());
 
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
@@ -120,7 +123,7 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: FFLocalizations.of(context).getText(
-                          'eocqudi3' /* User Name */,
+                          'w3x3q61q' /* Father Name */,
                         ),
                         labelStyle: FlutterFlowTheme.of(context).bodyMedium,
                         hintStyle: FlutterFlowTheme.of(context).labelMedium,
@@ -169,7 +172,7 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: FFLocalizations.of(context).getText(
-                          'neyaxwn9' /* Phone Number */,
+                          'x8hqddgh' /* Phone Number */,
                         ),
                         labelStyle: FlutterFlowTheme.of(context).labelMedium,
                         hintStyle: FlutterFlowTheme.of(context).labelMedium,
@@ -219,7 +222,7 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: FFLocalizations.of(context).getText(
-                          'v7bbtb0h' /* password */,
+                          'cy1m6rxg' /* password */,
                         ),
                         labelStyle: FlutterFlowTheme.of(context).labelMedium,
                         hintStyle: FlutterFlowTheme.of(context).labelMedium,
@@ -257,46 +260,6 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                           _model.textController3Validator.asValidator(context),
                     ),
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(50.0, 10.0, 50.0, 0.0),
-                    child: FlutterFlowDropDown<String>(
-                      controller: _model.dropDownValueController ??=
-                          FormFieldController<String>(null),
-                      options: [
-                        FFLocalizations.of(context).getText(
-                          '0kjr0ij7' /* Developer */,
-                        ),
-                        FFLocalizations.of(context).getText(
-                          'yp1m6zfn' /* Teacher */,
-                        )
-                      ],
-                      onChanged: (val) =>
-                          setState(() => _model.dropDownValue = val),
-                      width: 300.0,
-                      height: 50.0,
-                      textStyle: FlutterFlowTheme.of(context).bodyMedium,
-                      hintText: FFLocalizations.of(context).getText(
-                        'u1mju42u' /* Select User Type */,
-                      ),
-                      icon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
-                      ),
-                      fillColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 2.0,
-                      borderColor: FlutterFlowTheme.of(context).alternate,
-                      borderWidth: 2.0,
-                      borderRadius: 8.0,
-                      margin:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-                      hidesUnderline: true,
-                      isSearchable: false,
-                      isMultiSelect: false,
-                    ),
-                  ),
                 ],
               ),
               Padding(
@@ -305,123 +268,144 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                   onPressed: () async {
                     var shouldSetState = false;
                     if (_model.textController1.text != '') {
-                      if (!(_model.textController2.text != '')) {
-                        if (shouldSetState) setState(() {});
-                        return;
-                      }
-                    } else {
-                      if (shouldSetState) setState(() {});
-                      return;
-                    }
-
-                    if (functions.isValidNumber(_model.textController2.text)!) {
-                      _model.conter = await queryUserCollectionRecordCount(
-                        queryBuilder: (userCollectionRecord) =>
-                            userCollectionRecord.where(
-                          'phone_number',
-                          isEqualTo: _model.textController2.text,
-                        ),
-                      );
-                      shouldSetState = true;
-                      if (_model.conter == 0) {
-                        var userCollectionRecordReference =
-                            UserCollectionRecord.collection.doc();
-                        await userCollectionRecordReference
-                            .set(createUserCollectionRecordData(
-                          phoneNumber: _model.textController2.text,
-                          displayName: _model.textController1.text,
-                          createdTime: getCurrentTimestamp,
-                          password: _model.textController3.text,
-                          userType:
-                              functions.getDropType(_model.dropDownValue!),
-                        ));
-                        _model.addUserCollection =
-                            UserCollectionRecord.getDocumentFromData(
-                                createUserCollectionRecordData(
-                                  phoneNumber: _model.textController2.text,
-                                  displayName: _model.textController1.text,
-                                  createdTime: getCurrentTimestamp,
-                                  password: _model.textController3.text,
-                                  userType: functions
-                                      .getDropType(_model.dropDownValue!),
-                                ),
-                                userCollectionRecordReference);
-                        shouldSetState = true;
-                        _model.firebaseListOfUseres2 =
-                            await queryUserCollectionRecordOnce();
-                        shouldSetState = true;
-                        setState(() {
-                          FFAppState().usereAppStateList = functions
-                              .convertFromFirebaseToUserList(
-                                  _model.firebaseListOfUseres2!.toList())
-                              .toList()
-                              .cast<UserModelStruct>();
-                        });
-                        Navigator.pop(context);
-                      } else {
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: Text(
-                                  FFLocalizations.of(context).getVariableText(
-                                enText: 'Error',
-                                arText: 'مشكلة',
-                              )),
-                              content: Text(
-                                  FFLocalizations.of(context).getVariableText(
-                                enText: 'Phone Number Exist',
-                                arText: 'رقم هاتف موجود',
-                              )),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: Text(FFLocalizations.of(context)
-                                      .getVariableText(
-                                    enText: 'Ok',
-                                    arText: 'حسنا',
-                                  )),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                        if (shouldSetState) setState(() {});
-                        return;
-                      }
-
-                      if (shouldSetState) setState(() {});
-                      return;
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text(
-                                FFLocalizations.of(context).getVariableText(
-                              enText: 'Error',
-                              arText: 'مشكلة',
-                            )),
-                            content: Text(
-                                FFLocalizations.of(context).getVariableText(
-                              enText: 'Wrong Phone Number',
-                              arText: 'رقم هاتف خاطئ',
-                            )),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text(
-                                    FFLocalizations.of(context).getVariableText(
-                                  enText: 'Ok',
-                                  arText: 'حسنا',
-                                )),
-                              ),
-                            ],
+                      if (_model.textController2.text != '') {
+                        if (functions
+                            .isValidNumber(_model.textController2.text)!) {
+                          _model.conter = await queryUserCollectionRecordCount(
+                            queryBuilder: (userCollectionRecord) =>
+                                userCollectionRecord.where(
+                              'phone_number',
+                              isEqualTo:
+                                  (_model.textFieldFocusNode2?.hasFocus ??
+                                          false)
+                                      .toString(),
+                            ),
                           );
-                        },
-                      );
+                          shouldSetState = true;
+                          if (_model.conter == 0) {
+                            var userCollectionRecordReference =
+                                UserCollectionRecord.collection.doc();
+                            await userCollectionRecordReference
+                                .set(createUserCollectionRecordData(
+                              phoneNumber: _model.textController2.text,
+                              displayName: _model.textController1.text,
+                              createdTime: getCurrentTimestamp,
+                              password: _model.textController3.text,
+                              userType: 2,
+                              adminReference:
+                                  FFAppState().userModel.modelReference,
+                              centerReference:
+                                  (widget.centerJsonModel != null &&
+                                              widget.centerJsonModel != ''
+                                          ? CenterModelStruct.fromMap(
+                                              widget.centerJsonModel)
+                                          : null)
+                                      ?.modelReference,
+                            ));
+                            _model.addparentCollection =
+                                UserCollectionRecord.getDocumentFromData(
+                                    createUserCollectionRecordData(
+                                      phoneNumber: _model.textController2.text,
+                                      displayName: _model.textController1.text,
+                                      createdTime: getCurrentTimestamp,
+                                      password: _model.textController3.text,
+                                      userType: 2,
+                                      adminReference:
+                                          FFAppState().userModel.modelReference,
+                                      centerReference:
+                                          (widget.centerJsonModel != null &&
+                                                      widget.centerJsonModel !=
+                                                          ''
+                                                  ? CenterModelStruct.fromMap(
+                                                      widget.centerJsonModel)
+                                                  : null)
+                                              ?.modelReference,
+                                    ),
+                                    userCollectionRecordReference);
+                            shouldSetState = true;
+                            _model.firebaseListOfUseres2 =
+                                await queryUserCollectionRecordOnce();
+                            shouldSetState = true;
+                            setState(() {
+                              FFAppState().usereAppStateList = functions
+                                  .convertFromFirebaseToUserList(
+                                      _model.firebaseListOfUseres2!.toList())
+                                  .toList()
+                                  .cast<UserModelStruct>();
+                            });
+                            Navigator.pop(context);
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    enText: 'Error',
+                                    arText: 'مشكلة',
+                                  )),
+                                  content: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    enText: 'Phone Number Exist',
+                                    arText: 'رقم هاتف موجود',
+                                  )),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        enText: 'Ok',
+                                        arText: 'حسنا',
+                                      )),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            if (shouldSetState) setState(() {});
+                            return;
+                          }
+
+                          if (shouldSetState) setState(() {});
+                          return;
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  enText: 'Error',
+                                  arText: 'مشكلة',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  enText: 'Wrong Phone Number',
+                                  arText: 'رقم هاتف خاطئ',
+                                )),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      enText: 'Ok',
+                                      arText: 'حسنا',
+                                    )),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          if (shouldSetState) setState(() {});
+                          return;
+                        }
+                      } else {
+                        if (shouldSetState) setState(() {});
+                        return;
+                      }
+                    } else {
                       if (shouldSetState) setState(() {});
                       return;
                     }
@@ -429,7 +413,7 @@ class _AddUserDialogWidgetState extends State<AddUserDialogWidget> {
                     if (shouldSetState) setState(() {});
                   },
                   text: FFLocalizations.of(context).getText(
-                    'q1t9aquy' /* Save */,
+                    '2eij2cop' /* Save */,
                   ),
                   options: FFButtonOptions(
                     width: double.infinity,

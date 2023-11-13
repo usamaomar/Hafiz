@@ -128,13 +128,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // AdminHomePage
-  {
-    'jih0hglw': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
   // DeveloperHomePage
   {
     'c159myw0': {
@@ -234,6 +227,67 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'يحفظ',
     },
   },
+  // AdminHomePage
+  {
+    'm2shazif': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    '9p19fr36': {
+      'en': '',
+      'ar': '',
+    },
+    'uz9v8zlm': {
+      'en': 'Names of Centers',
+      'ar': 'اسماء المراكز',
+    },
+    'zodwpwf5': {
+      'en': '',
+      'ar': '',
+    },
+  },
+  // AddParentPage
+  {
+    'x29m9huv': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    'vwppl9fp': {
+      'en': '',
+      'ar': '',
+    },
+    'xn65tho4': {
+      'en': 'Parent Name : ',
+      'ar': 'اسم الوالدين :',
+    },
+    'dbouzltw': {
+      'en': 'Phone Number : ',
+      'ar': 'رقم التليفون :',
+    },
+    'h06lj9e7': {
+      'en': 'Phone Number : ',
+      'ar': 'رقم التليفون :',
+    },
+    'lx60tis1': {
+      'en': 'Fathers Name',
+      'ar': 'اسم ولي الامر',
+    },
+  },
+  // SettingsPage
+  {
+    '39z4eauf': {
+      'en': 'Logout',
+      'ar': 'تسجيل خروج',
+    },
+    'jviea4yo': {
+      'en': 'Settings',
+      'ar': 'إعدادات',
+    },
+    '79hjq5uh': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
   // sideComponent
   {
     'jnfc9vnz': {
@@ -299,6 +353,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'حفظ',
     },
   },
+  // AsignTeatcherDialog
+  {
+    '20w1ittr': {
+      'en': 'Centers you are registered in',
+      'ar': 'المراكز التي قمت بالتسجيل فيها',
+    },
+  },
   // ShowTeatcherDialog
   {
     'ziwspbvu': {
@@ -308,6 +369,36 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '7a2txfbm': {
       'en': 'Add',
       'ar': 'يضيف',
+    },
+  },
+  // ShowserDialog
+  {
+    '5kxze7rg': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    'o6lhidxe': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+  },
+  // AddParentDialog
+  {
+    'w3x3q61q': {
+      'en': 'Father Name',
+      'ar': 'اسم ولي الامر',
+    },
+    'x8hqddgh': {
+      'en': 'Phone Number',
+      'ar': 'رقم الهاتف',
+    },
+    'cy1m6rxg': {
+      'en': 'password',
+      'ar': 'كلمة المرور',
+    },
+    '2eij2cop': {
+      'en': 'Save',
+      'ar': 'حفظ',
     },
   },
   // Miscellaneous

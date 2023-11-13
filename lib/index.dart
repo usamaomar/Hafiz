@@ -1,7 +1,5 @@
 // Export pages
 export '/login_page/login_page_widget.dart' show LoginPageWidget;
-export '/pages/admin_pages/admin_home_page/admin_home_page_widget.dart'
-    show AdminHomePageWidget;
 export '/pages/developer_pages/developer_home_page/developer_home_page_widget.dart'
     show DeveloperHomePageWidget;
 export '/pages/user_pages/user_home_page/user_home_page_widget.dart'
@@ -11,3 +9,8 @@ export '/pages/developer_pages/add_admins_page/add_admins_page_widget.dart'
     show AddAdminsPageWidget;
 export '/pages/developer_pages/admins_page/admins_page_widget.dart'
     show AdminsPageWidget;
+export '/pages/admin_pages/admin_home_page/admin_home_page_widget.dart'
+    show AdminHomePageWidget;
+export '/pages/admin_pages/add_parent_page/add_parent_page_widget.dart'
+    show AddParentPageWidget;
+export '/pages/settings_page/settings_page_widget.dart' show SettingsPageWidget;

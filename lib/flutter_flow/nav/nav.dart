@@ -30,22 +30,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const SplashPageWidget(),
+      errorBuilder: (context, state) => const NavBarPage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const SplashPageWidget(),
+          builder: (context, _) => const NavBarPage(),
         ),
         FFRoute(
           name: 'LoginPage',
           path: '/loginPage',
           builder: (context, params) => const LoginPageWidget(),
-        ),
-        FFRoute(
-          name: 'AdminHomePage',
-          path: '/adminHomePage',
-          builder: (context, params) => const AdminHomePageWidget(),
         ),
         FFRoute(
           name: 'DeveloperHomePage',
@@ -77,6 +72,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AdminsPageWidget(
             centerModel: params.getParam('centerModel', ParamType.JSON),
           ),
+        ),
+        FFRoute(
+          name: 'AdminHomePage',
+          path: '/adminHomePage',
+          builder: (context, params) => const AdminHomePageWidget(),
+        ),
+        FFRoute(
+          name: 'AddParentPage',
+          path: '/addParentPage',
+          builder: (context, params) => AddParentPageWidget(
+            centerJsonModel: params.getParam('centerJsonModel', ParamType.JSON),
+          ),
+        ),
+        FFRoute(
+          name: 'SettingsPage',
+          path: '/settingsPage',
+          builder: (context, params) => const SettingsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

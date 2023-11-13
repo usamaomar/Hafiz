@@ -13,12 +13,12 @@ class CenterModelStruct extends FFFirebaseStruct {
     String? name,
     String? phoneNumber,
     LatLng? location,
-    DocumentReference? centerReference,
+    DocumentReference? modelReference,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _name = name,
         _phoneNumber = phoneNumber,
         _location = location,
-        _centerReference = centerReference,
+        _modelReference = modelReference,
         super(firestoreUtilData);
 
   // "name" field.
@@ -39,18 +39,18 @@ class CenterModelStruct extends FFFirebaseStruct {
   set location(LatLng? val) => _location = val;
   bool hasLocation() => _location != null;
 
-  // "center_reference" field.
-  DocumentReference? _centerReference;
-  DocumentReference? get centerReference => _centerReference;
-  set centerReference(DocumentReference? val) => _centerReference = val;
-  bool hasCenterReference() => _centerReference != null;
+  // "model_reference" field.
+  DocumentReference? _modelReference;
+  DocumentReference? get modelReference => _modelReference;
+  set modelReference(DocumentReference? val) => _modelReference = val;
+  bool hasModelReference() => _modelReference != null;
 
   static CenterModelStruct fromMap(Map<String, dynamic> data) =>
       CenterModelStruct(
         name: data['name'] as String?,
         phoneNumber: data['phone_number'] as String?,
         location: data['location'] as LatLng?,
-        centerReference: data['center_reference'] as DocumentReference?,
+        modelReference: data['model_reference'] as DocumentReference?,
       );
 
   static CenterModelStruct? maybeFromMap(dynamic data) =>
@@ -60,7 +60,7 @@ class CenterModelStruct extends FFFirebaseStruct {
         'name': _name,
         'phone_number': _phoneNumber,
         'location': _location,
-        'center_reference': _centerReference,
+        'model_reference': _modelReference,
       }.withoutNulls;
 
   @override
@@ -77,8 +77,8 @@ class CenterModelStruct extends FFFirebaseStruct {
           _location,
           ParamType.LatLng,
         ),
-        'center_reference': serializeParam(
-          _centerReference,
+        'model_reference': serializeParam(
+          _modelReference,
           ParamType.DocumentReference,
         ),
       }.withoutNulls;
@@ -100,8 +100,8 @@ class CenterModelStruct extends FFFirebaseStruct {
           ParamType.LatLng,
           false,
         ),
-        centerReference: deserializeParam(
-          data['center_reference'],
+        modelReference: deserializeParam(
+          data['model_reference'],
           ParamType.DocumentReference,
           false,
           collectionNamePath: ['centerCollection'],
@@ -117,19 +117,19 @@ class CenterModelStruct extends FFFirebaseStruct {
         name == other.name &&
         phoneNumber == other.phoneNumber &&
         location == other.location &&
-        centerReference == other.centerReference;
+        modelReference == other.modelReference;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([name, phoneNumber, location, centerReference]);
+      const ListEquality().hash([name, phoneNumber, location, modelReference]);
 }
 
 CenterModelStruct createCenterModelStruct({
   String? name,
   String? phoneNumber,
   LatLng? location,
-  DocumentReference? centerReference,
+  DocumentReference? modelReference,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -139,7 +139,7 @@ CenterModelStruct createCenterModelStruct({
       name: name,
       phoneNumber: phoneNumber,
       location: location,
-      centerReference: centerReference,
+      modelReference: modelReference,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

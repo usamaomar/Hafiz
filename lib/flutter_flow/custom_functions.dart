@@ -103,7 +103,7 @@ List<CenterModelStruct> convertFromFirebaseToCenterList(
   for (CenterCollectionRecord item in centerFirebaseList) {
     listOfCenters.add(CenterModelStruct(
         name: item.name,
-        centerReference: item.reference,
+        modelReference: item.reference,
         phoneNumber: item.phoneNumber));
   }
   return listOfCenters;
@@ -114,11 +114,15 @@ CenterModelStruct getCenterModel(
   DocumentReference referenceNumber,
 ) {
   for (var centerModel in listOfAppStateCenterModels) {
-    if (centerModel.centerReference == referenceNumber) {
+    if (centerModel.modelReference == referenceNumber) {
       return centerModel;
     }
   }
 
   // If no match is found, you can return null or handle it as per your requirement
   return CenterModelStruct();
+}
+
+bool? isValidNumber(String? number) {
+  return (number?.startsWith('0') ?? false) && number?.length == 10;
 }

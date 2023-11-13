@@ -1,10 +1,9 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
-import 'add_user_dialog_widget.dart' show AddUserDialogWidget;
+import 'add_parent_dialog_widget.dart' show AddParentDialogWidget;
 import 'package:flutter/material.dart';
 
-class AddUserDialogModel extends FlutterFlowModel<AddUserDialogWidget> {
+class AddParentDialogModel extends FlutterFlowModel<AddParentDialogWidget> {
   ///  Local state fields for this component.
 
   UserModelStruct? userModel;
@@ -25,13 +24,10 @@ class AddUserDialogModel extends FlutterFlowModel<AddUserDialogWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   int? conter;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  UserCollectionRecord? addUserCollection;
+  UserCollectionRecord? addparentCollection;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<UserCollectionRecord>? firebaseListOfUseres2;
 

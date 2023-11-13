@@ -15,12 +15,18 @@ class UserModelStruct extends FFFirebaseStruct {
     String? password,
     String? phoneNumber,
     int? userType,
+    DocumentReference? modelReference,
+    DocumentReference? adminReference,
+    DocumentReference? centerReference,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _displayName = displayName,
         _createdTime = createdTime,
         _password = password,
         _phoneNumber = phoneNumber,
         _userType = userType,
+        _modelReference = modelReference,
+        _adminReference = adminReference,
+        _centerReference = centerReference,
         super(firestoreUtilData);
 
   // "display_name" field.
@@ -54,12 +60,33 @@ class UserModelStruct extends FFFirebaseStruct {
   void incrementUserType(int amount) => _userType = userType + amount;
   bool hasUserType() => _userType != null;
 
+  // "model_reference" field.
+  DocumentReference? _modelReference;
+  DocumentReference? get modelReference => _modelReference;
+  set modelReference(DocumentReference? val) => _modelReference = val;
+  bool hasModelReference() => _modelReference != null;
+
+  // "admin_reference" field.
+  DocumentReference? _adminReference;
+  DocumentReference? get adminReference => _adminReference;
+  set adminReference(DocumentReference? val) => _adminReference = val;
+  bool hasAdminReference() => _adminReference != null;
+
+  // "center_reference" field.
+  DocumentReference? _centerReference;
+  DocumentReference? get centerReference => _centerReference;
+  set centerReference(DocumentReference? val) => _centerReference = val;
+  bool hasCenterReference() => _centerReference != null;
+
   static UserModelStruct fromMap(Map<String, dynamic> data) => UserModelStruct(
         displayName: data['display_name'] as String?,
         createdTime: data['created_time'] as DateTime?,
         password: data['password'] as String?,
         phoneNumber: data['phone_number'] as String?,
         userType: castToType<int>(data['user_type']),
+        modelReference: data['model_reference'] as DocumentReference?,
+        adminReference: data['admin_reference'] as DocumentReference?,
+        centerReference: data['center_reference'] as DocumentReference?,
       );
 
   static UserModelStruct? maybeFromMap(dynamic data) =>
@@ -71,6 +98,9 @@ class UserModelStruct extends FFFirebaseStruct {
         'password': _password,
         'phone_number': _phoneNumber,
         'user_type': _userType,
+        'model_reference': _modelReference,
+        'admin_reference': _adminReference,
+        'center_reference': _centerReference,
       }.withoutNulls;
 
   @override
@@ -94,6 +124,18 @@ class UserModelStruct extends FFFirebaseStruct {
         'user_type': serializeParam(
           _userType,
           ParamType.int,
+        ),
+        'model_reference': serializeParam(
+          _modelReference,
+          ParamType.DocumentReference,
+        ),
+        'admin_reference': serializeParam(
+          _adminReference,
+          ParamType.DocumentReference,
+        ),
+        'center_reference': serializeParam(
+          _centerReference,
+          ParamType.DocumentReference,
         ),
       }.withoutNulls;
 
@@ -124,6 +166,24 @@ class UserModelStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        modelReference: deserializeParam(
+          data['model_reference'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['userCollection'],
+        ),
+        adminReference: deserializeParam(
+          data['admin_reference'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['userCollection'],
+        ),
+        centerReference: deserializeParam(
+          data['center_reference'],
+          ParamType.DocumentReference,
+          false,
+          collectionNamePath: ['centerCollection'],
+        ),
       );
 
   @override
@@ -136,12 +196,23 @@ class UserModelStruct extends FFFirebaseStruct {
         createdTime == other.createdTime &&
         password == other.password &&
         phoneNumber == other.phoneNumber &&
-        userType == other.userType;
+        userType == other.userType &&
+        modelReference == other.modelReference &&
+        adminReference == other.adminReference &&
+        centerReference == other.centerReference;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([displayName, createdTime, password, phoneNumber, userType]);
+  int get hashCode => const ListEquality().hash([
+        displayName,
+        createdTime,
+        password,
+        phoneNumber,
+        userType,
+        modelReference,
+        adminReference,
+        centerReference
+      ]);
 }
 
 UserModelStruct createUserModelStruct({
@@ -150,6 +221,9 @@ UserModelStruct createUserModelStruct({
   String? password,
   String? phoneNumber,
   int? userType,
+  DocumentReference? modelReference,
+  DocumentReference? adminReference,
+  DocumentReference? centerReference,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -161,6 +235,9 @@ UserModelStruct createUserModelStruct({
       password: password,
       phoneNumber: phoneNumber,
       userType: userType,
+      modelReference: modelReference,
+      adminReference: adminReference,
+      centerReference: centerReference,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

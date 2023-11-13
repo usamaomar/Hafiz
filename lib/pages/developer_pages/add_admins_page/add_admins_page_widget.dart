@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/developer_pages/add_user_dialog/add_user_dialog_widget.dart';
 import '/pages/developer_pages/asign_teatcher_dialog/asign_teatcher_dialog_widget.dart';
+import '/pages/developer_pages/showser_dialog/showser_dialog_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:collection/collection.dart';
@@ -275,10 +276,54 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
                             .mapIndexed((dataTableListIndex,
                                     dataTableListItem) =>
                                 [
-                                  Text(
-                                    dataTableListItem.displayName,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await showAlignedDialog(
+                                          context: context,
+                                          isGlobal: true,
+                                          avoidOverflow: false,
+                                          targetAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          followerAnchor: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          builder: (dialogContext) {
+                                            return Material(
+                                              color: Colors.transparent,
+                                              child: GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: SizedBox(
+                                                  height: 500.0,
+                                                  child: ShowserDialogWidget(
+                                                    userModel: dataTableListItem
+                                                        .toMap(),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                      child: Text(
+                                        dataTableListItem.displayName,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                    ),
                                   ),
                                   Text(
                                     dataTableListItem.phoneNumber,

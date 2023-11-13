@@ -39,12 +39,30 @@ class UserCollectionRecord extends FirestoreRecord {
   int get userType => _userType ?? 0;
   bool hasUserType() => _userType != null;
 
+  // "admin_reference" field.
+  DocumentReference? _adminReference;
+  DocumentReference? get adminReference => _adminReference;
+  bool hasAdminReference() => _adminReference != null;
+
+  // "center_reference" field.
+  DocumentReference? _centerReference;
+  DocumentReference? get centerReference => _centerReference;
+  bool hasCenterReference() => _centerReference != null;
+
+  // "parents_reference" field.
+  DocumentReference? _parentsReference;
+  DocumentReference? get parentsReference => _parentsReference;
+  bool hasParentsReference() => _parentsReference != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _password = snapshotData['password'] as String?;
     _userType = castToType<int>(snapshotData['user_type']);
+    _adminReference = snapshotData['admin_reference'] as DocumentReference?;
+    _centerReference = snapshotData['center_reference'] as DocumentReference?;
+    _parentsReference = snapshotData['parents_reference'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -87,6 +105,9 @@ Map<String, dynamic> createUserCollectionRecordData({
   String? phoneNumber,
   String? password,
   int? userType,
+  DocumentReference? adminReference,
+  DocumentReference? centerReference,
+  DocumentReference? parentsReference,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -95,6 +116,9 @@ Map<String, dynamic> createUserCollectionRecordData({
       'phone_number': phoneNumber,
       'password': password,
       'user_type': userType,
+      'admin_reference': adminReference,
+      'center_reference': centerReference,
+      'parents_reference': parentsReference,
     }.withoutNulls,
   );
 
@@ -111,7 +135,10 @@ class UserCollectionRecordDocumentEquality
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.password == e2?.password &&
-        e1?.userType == e2?.userType;
+        e1?.userType == e2?.userType &&
+        e1?.adminReference == e2?.adminReference &&
+        e1?.centerReference == e2?.centerReference &&
+        e1?.parentsReference == e2?.parentsReference;
   }
 
   @override
@@ -120,7 +147,10 @@ class UserCollectionRecordDocumentEquality
         e?.createdTime,
         e?.phoneNumber,
         e?.password,
-        e?.userType
+        e?.userType,
+        e?.adminReference,
+        e?.centerReference,
+        e?.parentsReference
       ]);
 
   @override
