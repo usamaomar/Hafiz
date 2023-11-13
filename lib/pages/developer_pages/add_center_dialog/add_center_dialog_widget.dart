@@ -230,14 +230,12 @@ class _AddCenterDialogWidgetState extends State<AddCenterDialogWidget> {
                           await centerCollectionRecordReference
                               .set(createCenterCollectionRecordData(
                             name: _model.textController1.text,
-                            location: FFAppState().location,
                             phoneNumber: _model.textController2.text,
                           ));
                           _model.addCenterCollection =
                               CenterCollectionRecord.getDocumentFromData(
                                   createCenterCollectionRecordData(
                                     name: _model.textController1.text,
-                                    location: FFAppState().location,
                                     phoneNumber: _model.textController2.text,
                                   ),
                                   centerCollectionRecordReference);
