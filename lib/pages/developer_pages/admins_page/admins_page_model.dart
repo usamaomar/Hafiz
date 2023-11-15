@@ -20,10 +20,6 @@ class AdminsPageModel extends FlutterFlowModel<AdminsPageWidget> {
           int index, Function(UserModelStruct) updateFn) =>
       userLocalStateList[index] = updateFn(userLocalStateList[index]);
 
-  DocumentReference? userRefrence;
-
-  DocumentReference? centerRefrence;
-
   List<UserCollectionRecord> useresDocumnetsList = [];
   void addToUseresDocumnetsList(UserCollectionRecord item) =>
       useresDocumnetsList.add(item);

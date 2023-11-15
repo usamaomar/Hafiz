@@ -303,6 +303,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'اسم الحافظ',
     },
   },
+  // SurahsPage
+  {
+    '26s5gv0q': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    'erwccc5g': {
+      'en': '',
+      'ar': '',
+    },
+    'hqxgdks1': {
+      'en': 'Qraan Surahs',
+      'ar': 'سور القران',
+    },
+    '4qznjez8': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
   // sideComponent
   {
     'jnfc9vnz': {

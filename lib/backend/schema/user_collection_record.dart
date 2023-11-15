@@ -54,6 +54,11 @@ class UserCollectionRecord extends FirestoreRecord {
   DocumentReference? get parentsReference => _parentsReference;
   bool hasParentsReference() => _parentsReference != null;
 
+  // "age" field.
+  String? _age;
+  String get age => _age ?? '';
+  bool hasAge() => _age != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
@@ -63,6 +68,7 @@ class UserCollectionRecord extends FirestoreRecord {
     _adminReference = snapshotData['admin_reference'] as DocumentReference?;
     _centerReference = snapshotData['center_reference'] as DocumentReference?;
     _parentsReference = snapshotData['parents_reference'] as DocumentReference?;
+    _age = snapshotData['age'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -108,6 +114,7 @@ Map<String, dynamic> createUserCollectionRecordData({
   DocumentReference? adminReference,
   DocumentReference? centerReference,
   DocumentReference? parentsReference,
+  String? age,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -119,6 +126,7 @@ Map<String, dynamic> createUserCollectionRecordData({
       'admin_reference': adminReference,
       'center_reference': centerReference,
       'parents_reference': parentsReference,
+      'age': age,
     }.withoutNulls,
   );
 
@@ -138,7 +146,8 @@ class UserCollectionRecordDocumentEquality
         e1?.userType == e2?.userType &&
         e1?.adminReference == e2?.adminReference &&
         e1?.centerReference == e2?.centerReference &&
-        e1?.parentsReference == e2?.parentsReference;
+        e1?.parentsReference == e2?.parentsReference &&
+        e1?.age == e2?.age;
   }
 
   @override
@@ -150,7 +159,8 @@ class UserCollectionRecordDocumentEquality
         e?.userType,
         e?.adminReference,
         e?.centerReference,
-        e?.parentsReference
+        e?.parentsReference,
+        e?.age
       ]);
 
   @override

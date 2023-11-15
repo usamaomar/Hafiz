@@ -18,6 +18,7 @@ class UserModelStruct extends FFFirebaseStruct {
     DocumentReference? modelReference,
     DocumentReference? adminReference,
     DocumentReference? centerReference,
+    String? age,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _displayName = displayName,
         _createdTime = createdTime,
@@ -27,6 +28,7 @@ class UserModelStruct extends FFFirebaseStruct {
         _modelReference = modelReference,
         _adminReference = adminReference,
         _centerReference = centerReference,
+        _age = age,
         super(firestoreUtilData);
 
   // "display_name" field.
@@ -78,6 +80,12 @@ class UserModelStruct extends FFFirebaseStruct {
   set centerReference(DocumentReference? val) => _centerReference = val;
   bool hasCenterReference() => _centerReference != null;
 
+  // "age" field.
+  String? _age;
+  String get age => _age ?? '';
+  set age(String? val) => _age = val;
+  bool hasAge() => _age != null;
+
   static UserModelStruct fromMap(Map<String, dynamic> data) => UserModelStruct(
         displayName: data['display_name'] as String?,
         createdTime: data['created_time'] as DateTime?,
@@ -87,6 +95,7 @@ class UserModelStruct extends FFFirebaseStruct {
         modelReference: data['model_reference'] as DocumentReference?,
         adminReference: data['admin_reference'] as DocumentReference?,
         centerReference: data['center_reference'] as DocumentReference?,
+        age: data['age'] as String?,
       );
 
   static UserModelStruct? maybeFromMap(dynamic data) =>
@@ -101,6 +110,7 @@ class UserModelStruct extends FFFirebaseStruct {
         'model_reference': _modelReference,
         'admin_reference': _adminReference,
         'center_reference': _centerReference,
+        'age': _age,
       }.withoutNulls;
 
   @override
@@ -136,6 +146,10 @@ class UserModelStruct extends FFFirebaseStruct {
         'center_reference': serializeParam(
           _centerReference,
           ParamType.DocumentReference,
+        ),
+        'age': serializeParam(
+          _age,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -184,6 +198,11 @@ class UserModelStruct extends FFFirebaseStruct {
           false,
           collectionNamePath: ['centerCollection'],
         ),
+        age: deserializeParam(
+          data['age'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -199,7 +218,8 @@ class UserModelStruct extends FFFirebaseStruct {
         userType == other.userType &&
         modelReference == other.modelReference &&
         adminReference == other.adminReference &&
-        centerReference == other.centerReference;
+        centerReference == other.centerReference &&
+        age == other.age;
   }
 
   @override
@@ -211,7 +231,8 @@ class UserModelStruct extends FFFirebaseStruct {
         userType,
         modelReference,
         adminReference,
-        centerReference
+        centerReference,
+        age
       ]);
 }
 
@@ -224,6 +245,7 @@ UserModelStruct createUserModelStruct({
   DocumentReference? modelReference,
   DocumentReference? adminReference,
   DocumentReference? centerReference,
+  String? age,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -238,6 +260,7 @@ UserModelStruct createUserModelStruct({
       modelReference: modelReference,
       adminReference: adminReference,
       centerReference: centerReference,
+      age: age,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

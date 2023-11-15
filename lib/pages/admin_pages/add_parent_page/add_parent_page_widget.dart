@@ -290,7 +290,8 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                                     ParamType.DocumentReference,
                                   ),
                                   'parentReferences': serializeParam(
-                                    dataListItem.modelReference,
+                                    _model.firebaseListOfUseres?[dataListIndex]
+                                        .reference,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

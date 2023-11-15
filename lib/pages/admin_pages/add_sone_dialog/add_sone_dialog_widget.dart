@@ -259,6 +259,7 @@ class _AddSoneDialogWidgetState extends State<AddSoneDialogWidget> {
                         adminReference: FFAppState().userModel.modelReference,
                         centerReference: widget.centerReference,
                         parentsReference: widget.parentReferences,
+                        age: _model.dropDownValue,
                       ));
                       _model.addparentCollection =
                           UserCollectionRecord.getDocumentFromData(
@@ -270,6 +271,7 @@ class _AddSoneDialogWidgetState extends State<AddSoneDialogWidget> {
                                     FFAppState().userModel.modelReference,
                                 centerReference: widget.centerReference,
                                 parentsReference: widget.parentReferences,
+                                age: _model.dropDownValue,
                               ),
                               userCollectionRecordReference);
                       shouldSetState = true;
@@ -284,6 +286,7 @@ class _AddSoneDialogWidgetState extends State<AddSoneDialogWidget> {
                             .cast<UserModelStruct>();
                       });
                       Navigator.pop(context);
+                      _model.updatePage(() {});
                     } else {
                       if (shouldSetState) setState(() {});
                       return;

@@ -16,3 +16,5 @@ export '/pages/admin_pages/add_parent_page/add_parent_page_widget.dart'
 export '/pages/settings_page/settings_page_widget.dart' show SettingsPageWidget;
 export '/pages/admin_pages/add_sone_page/add_sone_page_widget.dart'
     show AddSonePageWidget;
+export '/pages/admin_pages/surahs_page/surahs_page_widget.dart'
+    show SurahsPageWidget;

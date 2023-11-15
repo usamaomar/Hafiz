@@ -78,6 +78,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             centerModel: params.getParam('centerModel', ParamType.JSON),
             centerDocument:
                 params.getParam('centerDocument', ParamType.Document),
+            centerReference: params.getParam('centerReference',
+                ParamType.DocumentReference, false, ['centerCollection']),
           ),
         ),
         FFRoute(
@@ -107,6 +109,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             parentReferences: params.getParam('parentReferences',
                 ParamType.DocumentReference, false, ['userCollection']),
           ),
+        ),
+        FFRoute(
+          name: 'SurahsPage',
+          path: '/surahsPage',
+          builder: (context, params) => const SurahsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

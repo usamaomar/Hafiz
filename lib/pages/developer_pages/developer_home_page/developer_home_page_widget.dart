@@ -331,6 +331,11 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                                             _model.localDocumentList[listIndex],
                                             ParamType.Document,
                                           ),
+                                          'centerReference': serializeParam(
+                                            _model.localDocumentList[listIndex]
+                                                .reference,
+                                            ParamType.DocumentReference,
+                                          ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
                                           'centerDocument': _model

@@ -17,10 +17,12 @@ class AdminsPageWidget extends StatefulWidget {
     super.key,
     required this.centerModel,
     this.centerDocument,
+    required this.centerReference,
   });
 
   final dynamic centerModel;
   final CenterCollectionRecord? centerDocument;
+  final DocumentReference? centerReference;
 
   @override
   _AdminsPageWidgetState createState() => _AdminsPageWidgetState();
@@ -252,17 +254,6 @@ class _AdminsPageWidgetState extends State<AdminsPageWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      setState(() {
-                                        _model.centerRefrence =
-                                            _model.centerRefrence;
-                                      });
-                                      setState(() {
-                                        _model.userRefrence = _model
-                                            .useresDocumnetsList[
-                                                dataTableListIndex]
-                                            .reference;
-                                      });
-
                                       var connectTeacherToCenterRecordReference =
                                           ConnectTeacherToCenterRecord
                                               .collection
@@ -270,16 +261,21 @@ class _AdminsPageWidgetState extends State<AdminsPageWidget> {
                                       await connectTeacherToCenterRecordReference
                                           .set(
                                               createConnectTeacherToCenterRecordData(
-                                        teacherReference: _model.userRefrence,
-                                        centerRefrence: _model.centerRefrence,
+                                        teacherReference: _model
+                                            .firebaseListOfUseres?[
+                                                dataTableListIndex]
+                                            .reference,
+                                        centerRefrence: widget.centerReference,
                                       ));
                                       _model.refres = ConnectTeacherToCenterRecord
                                           .getDocumentFromData(
                                               createConnectTeacherToCenterRecordData(
-                                                teacherReference:
-                                                    _model.userRefrence,
+                                                teacherReference: _model
+                                                    .firebaseListOfUseres?[
+                                                        dataTableListIndex]
+                                                    .reference,
                                                 centerRefrence:
-                                                    _model.centerRefrence,
+                                                    widget.centerReference,
                                               ),
                                               connectTeacherToCenterRecordReference);
                                       Navigator.pop(context);
