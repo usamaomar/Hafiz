@@ -298,6 +298,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Age : ',
       'ar': 'عمر :',
     },
+    '0tlf7pbf': {
+      'en': 'Add saved',
+      'ar': 'أضف المحفوظات',
+    },
     'fvxw07fz': {
       'en': 'Haves Name',
       'ar': 'اسم الحافظ',
@@ -516,6 +520,33 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '0tunl9xu': {
       'en': 'Save',
       'ar': 'حفظ',
+    },
+  },
+  // AddHifzComponentDialog
+  {
+    '99uxnvjy': {
+      'en': 'Basic Dialog Title',
+      'ar': '',
+    },
+    'cru582zd': {
+      'en': 'A',
+      'ar': '',
+    },
+    'fn2hewy7': {
+      'en': 'List Item',
+      'ar': '',
+    },
+    'ff7hgyq5': {
+      'en': '100+',
+      'ar': '',
+    },
+    'cli486je': {
+      'en': 'Action 2',
+      'ar': '',
+    },
+    'lj4trl7s': {
+      'en': 'Action 1',
+      'ar': '',
     },
   },
   // Miscellaneous

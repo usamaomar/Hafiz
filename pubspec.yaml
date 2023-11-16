@@ -48,6 +48,7 @@ dependencies:
   google_fonts: 4.0.3
   intl: 0.18.1
   json_path: 0.6.2
+  numberpicker: ^2.1.2
   page_transition: 2.0.4
   path_provider: 2.0.14
   path_provider_android: 2.0.25
@@ -63,6 +64,7 @@ dependencies:
   sqflite: 2.2.6
   stop_watch_timer: 3.0.2
   stream_transform: 2.1.0
+  styled_divider: 1.0.4
   timeago: 3.2.2
   url_launcher: 6.1.10
   url_launcher_android: 6.0.27

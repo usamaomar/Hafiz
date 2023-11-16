@@ -222,35 +222,72 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                         shouldSetState = true;
                         if (_model.apiResultccq?.phoneNumber ==
                             _model.textController1.text) {
-                          setState(() {
-                            FFAppState().updateUserModelStruct(
-                              (e) => e
-                                ..displayName = _model.apiResultccq?.displayName
-                                ..createdTime = _model.apiResultccq?.createdTime
-                                ..password = _model.apiResultccq?.password
-                                ..phoneNumber = _model.apiResultccq?.phoneNumber
-                                ..userType = _model.apiResultccq?.userType
-                                ..modelReference =
-                                    _model.apiResultccq?.reference,
-                            );
-                          });
                           if (_model.apiResultccq?.userType == 0) {
+                            setState(() {
+                              FFAppState().updateUserModelStruct(
+                                (e) => e
+                                  ..displayName =
+                                      _model.apiResultccq?.displayName
+                                  ..createdTime =
+                                      _model.apiResultccq?.createdTime
+                                  ..password = _model.apiResultccq?.password
+                                  ..phoneNumber =
+                                      _model.apiResultccq?.phoneNumber
+                                  ..userType = _model.apiResultccq?.userType
+                                  ..modelReference =
+                                      _model.apiResultccq?.reference,
+                              );
+                            });
                             if (Navigator.of(context).canPop()) {
                               context.pop();
                             }
                             context.pushNamed('DeveloperHomePage');
                           } else {
                             if (_model.apiResultccq?.userType == 1) {
+                              setState(() {
+                                FFAppState().updateUserModelStruct(
+                                  (e) => e
+                                    ..displayName =
+                                        _model.apiResultccq?.displayName
+                                    ..createdTime =
+                                        _model.apiResultccq?.createdTime
+                                    ..password = _model.apiResultccq?.password
+                                    ..phoneNumber =
+                                        _model.apiResultccq?.phoneNumber
+                                    ..userType = _model.apiResultccq?.userType
+                                    ..modelReference =
+                                        _model.apiResultccq?.reference,
+                                );
+                              });
                               if (Navigator.of(context).canPop()) {
                                 context.pop();
                               }
                               context.pushNamed('AdminHomePage');
-                            } else {
-                              context.goNamed('UserHomePage');
-                            }
 
-                            if (shouldSetState) setState(() {});
-                            return;
+                              if (shouldSetState) setState(() {});
+                              return;
+                            } else {
+                              setState(() {
+                                FFAppState().updateUserModelStruct(
+                                  (e) => e
+                                    ..displayName =
+                                        _model.apiResultccq?.displayName
+                                    ..createdTime =
+                                        _model.apiResultccq?.createdTime
+                                    ..password = _model.apiResultccq?.password
+                                    ..phoneNumber =
+                                        _model.apiResultccq?.phoneNumber
+                                    ..userType = _model.apiResultccq?.userType
+                                    ..modelReference =
+                                        _model.apiResultccq?.reference,
+                                );
+                              });
+
+                              context.goNamed('UserHomePage');
+
+                              if (shouldSetState) setState(() {});
+                              return;
+                            }
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'surahs_page_model.dart';
@@ -25,6 +26,19 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SurahsPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        _model.listOfSuras = getJsonField(
+          functions.getAllSurhs(),
+          r'''$.data''',
+          true,
+        )!
+            .toList()
+            .cast<dynamic>();
+      });
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -116,7 +130,19 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                             '_model.textController',
                             const Duration(milliseconds: 400),
                             () async {
-                              setState(() {});
+                              setState(() {
+                                _model.listOfSuras = functions
+                                    .filterSuraModelsList(
+                                        getJsonField(
+                                          functions.getAllSurhs(),
+                                          r'''$.data''',
+                                          true,
+                                        )!,
+                                        _model.listOfSuras.toList(),
+                                        _model.textController.text)
+                                    .toList()
+                                    .cast<dynamic>();
+                              });
                             },
                           ),
                           obscureText: false,
@@ -177,12 +203,8 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                       const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
                   child: Builder(
                     builder: (context) {
-                      final suraList = functions
-                          .removeFirstAndLast(getJsonField(
-                            functions.getAllSurhs(),
-                            r'''$.data''',
-                          ).toString())
-                          .toList();
+                      final listOfSura =
+                          _model.listOfSuras.map((e) => e).toList();
                       return GridView.builder(
                         padding: EdgeInsets.zero,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -192,9 +214,9 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                           childAspectRatio: 1.0,
                         ),
                         scrollDirection: Axis.vertical,
-                        itemCount: suraList.length,
-                        itemBuilder: (context, suraListIndex) {
-                          final suraListItem = suraList[suraListIndex];
+                        itemCount: listOfSura.length,
+                        itemBuilder: (context, listOfSuraIndex) {
+                          final listOfSuraItem = listOfSura[listOfSuraIndex];
                           return Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             color: FlutterFlowTheme.of(context)
@@ -208,11 +230,11 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                               child: Text(
                                 functions.getNameByLanguge(
                                     getJsonField(
-                                      suraListItem,
+                                      listOfSuraItem,
                                       r'''$.englishName''',
                                     ).toString(),
                                     getJsonField(
-                                      suraListItem,
+                                      listOfSuraItem,
                                       r'''$.name''',
                                     ).toString(),
                                     FFLocalizations.of(context).languageCode),

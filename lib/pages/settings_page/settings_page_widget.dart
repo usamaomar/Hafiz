@@ -108,7 +108,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            setState(() {
+                            FFAppState().update(() {
                               FFAppState().userModel = UserModelStruct();
                               FFAppState().location = null;
                               FFAppState().listOfNames = [];
