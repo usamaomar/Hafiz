@@ -1,7 +1,9 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/admin_pages/add_hifz_component_dialog/add_hifz_component_dialog_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -217,33 +219,70 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                         itemCount: listOfSura.length,
                         itemBuilder: (context, listOfSuraIndex) {
                           final listOfSuraItem = listOfSura[listOfSuraIndex];
-                          return Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Align(
-                              alignment: const AlignmentDirectional(0.00, 0.00),
-                              child: Text(
-                                functions.getNameByLanguge(
-                                    getJsonField(
-                                      listOfSuraItem,
-                                      r'''$.englishName''',
-                                    ).toString(),
-                                    getJsonField(
-                                      listOfSuraItem,
-                                      r'''$.name''',
-                                    ).toString(),
-                                    FFLocalizations.of(context).languageCode),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                          return Builder(
+                            builder: (context) => InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showAlignedDialog(
+                                  context: context,
+                                  isGlobal: true,
+                                  avoidOverflow: false,
+                                  targetAnchor: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  followerAnchor: const AlignmentDirectional(0.0, 0.0)
+                                      .resolve(Directionality.of(context)),
+                                  builder: (dialogContext) {
+                                    return Material(
+                                      color: Colors.transparent,
+                                      child: GestureDetector(
+                                        onTap: () => _model
+                                                .unfocusNode.canRequestFocus
+                                            ? FocusScope.of(context)
+                                                .requestFocus(
+                                                    _model.unfocusNode)
+                                            : FocusScope.of(context).unfocus(),
+                                        child: const SizedBox(
+                                          height: 500.0,
+                                          child: AddHifzComponentDialogWidget(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              },
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.00, 0.00),
+                                  child: Text(
+                                    functions.getNameByLanguge(
+                                        getJsonField(
+                                          listOfSuraItem,
+                                          r'''$.englishName''',
+                                        ).toString(),
+                                        getJsonField(
+                                          listOfSuraItem,
+                                          r'''$.name''',
+                                        ).toString(),
+                                        FFLocalizations.of(context)
+                                            .languageCode),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
                           );

@@ -240,7 +240,7 @@ class _AddHifzComponentDialogWidgetState
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  '',
+                                  'sd',
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
