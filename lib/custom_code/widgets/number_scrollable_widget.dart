@@ -20,6 +20,7 @@ class NumberScrollableWidget extends StatefulWidget {
     required this.currentAya,
     required this.totalAyat,
     required this.onChangeValue,
+    required this.timeModel,
   }) : super(key: key);
 
   final double? width;
@@ -27,6 +28,7 @@ class NumberScrollableWidget extends StatefulWidget {
   final int currentAya;
   final int totalAyat;
   final Future<dynamic> Function() onChangeValue;
+  final TimeModelStruct timeModel;
 
   @override
   _NumberScrollableWidgetState createState() => _NumberScrollableWidgetState();
@@ -43,6 +45,7 @@ class _NumberScrollableWidgetState extends State<NumberScrollableWidget> {
           minValue: 1,
           maxValue: widget.totalAyat,
           onChanged: (value) {
+            widget.timeModel..initValue = 10;
             widget.onChangeValue.call();
           },
         ),

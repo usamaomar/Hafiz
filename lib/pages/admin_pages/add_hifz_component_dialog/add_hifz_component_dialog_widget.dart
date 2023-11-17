@@ -1,7 +1,8 @@
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
@@ -199,7 +200,13 @@ class _AddHifzComponentDialogWidgetState
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            _model.updatedInt.toString(),
+                                            valueOrDefault<String>(
+                                              FFAppState()
+                                                  .timeModelAppState
+                                                  .initValue
+                                                  .toString(),
+                                              '0',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge,
                                           ),
@@ -258,25 +265,10 @@ class _AddHifzComponentDialogWidgetState
                           height: 100.0,
                           currentAya: 55,
                           totalAyat: 150,
+                          timeModel: TimeModelStruct(
+                            initValue: 0,
+                          ),
                           onChangeValue: () async {
-                            _model.data = await actions.scrollCustomeAction(
-                              () async {},
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  _model.data!.toString(),
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
-
                             setState(() {});
                           },
                         ),

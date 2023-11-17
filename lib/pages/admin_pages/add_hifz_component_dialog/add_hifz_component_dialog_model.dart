@@ -1,3 +1,5 @@
+import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'add_hifz_component_dialog_widget.dart'
     show AddHifzComponentDialogWidget;
@@ -9,12 +11,14 @@ class AddHifzComponentDialogModel
 
   int updatedInt = 0;
 
+  TimeModelStruct? timeModel;
+  void updateTimeModelStruct(Function(TimeModelStruct) updateFn) =>
+      updateFn(timeModel ??= TimeModelStruct());
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
-  // Stores action output result for [Custom Action - scrollCustomeAction] action in NumberScrollableWidget widget.
-  dynamic data;
 
   /// Initialization and disposal methods.
 

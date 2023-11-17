@@ -152,6 +152,16 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAppStateCenterList(int index, CenterModelStruct value) {
     _appStateCenterList.insert(index, value);
   }
+
+  TimeModelStruct _timeModelAppState = TimeModelStruct();
+  TimeModelStruct get timeModelAppState => _timeModelAppState;
+  set timeModelAppState(TimeModelStruct value) {
+    _timeModelAppState = value;
+  }
+
+  void updateTimeModelAppStateStruct(Function(TimeModelStruct) updateFn) {
+    updateFn(_timeModelAppState);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
