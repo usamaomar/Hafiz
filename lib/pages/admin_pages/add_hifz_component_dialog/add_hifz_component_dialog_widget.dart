@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
@@ -104,23 +105,46 @@ class _AddHifzComponentDialogWidgetState
                   children: [
                     Stack(
                       children: [
-                        const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              25.0, 0.0, 25.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 60.0,
-                                child: StyledVerticalDivider(
-                                  thickness: 3.0,
-                                  color: Color(0xFF092853),
-                                  lineStyle: DividerLineStyle.dotted,
-                                ),
+                        const Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  25.0, 0.0, 25.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30.0,
+                                    child: StyledVerticalDivider(
+                                      thickness: 3.0,
+                                      color: Color(0xFF092853),
+                                      lineStyle: DividerLineStyle.dotted,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  25.0, 0.0, 25.0, 0.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 30.0,
+                                    child: StyledVerticalDivider(
+                                      thickness: 3.0,
+                                      color: Color(0xFF092853),
+                                      lineStyle: DividerLineStyle.dotted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -175,9 +199,7 @@ class _AddHifzComponentDialogWidgetState
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            FFLocalizations.of(context).getText(
-                                              'fn2hewy7' /* List Item */,
-                                            ),
+                                            _model.updatedInt.toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge,
                                           ),
@@ -237,10 +259,13 @@ class _AddHifzComponentDialogWidgetState
                           currentAya: 55,
                           totalAyat: 150,
                           onChangeValue: () async {
+                            _model.data = await actions.scrollCustomeAction(
+                              () async {},
+                            );
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  'sd',
+                                  _model.data!.toString(),
                                   style: TextStyle(
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
@@ -251,6 +276,8 @@ class _AddHifzComponentDialogWidgetState
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
+
+                            setState(() {});
                           },
                         ),
                       ),

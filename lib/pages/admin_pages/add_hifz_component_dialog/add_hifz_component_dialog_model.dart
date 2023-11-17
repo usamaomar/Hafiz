@@ -5,10 +5,16 @@ import 'package:flutter/material.dart';
 
 class AddHifzComponentDialogModel
     extends FlutterFlowModel<AddHifzComponentDialogWidget> {
+  ///  Local state fields for this component.
+
+  int updatedInt = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Checkbox widget.
   bool? checkboxValue;
+  // Stores action output result for [Custom Action - scrollCustomeAction] action in NumberScrollableWidget widget.
+  dynamic data;
 
   /// Initialization and disposal methods.
 

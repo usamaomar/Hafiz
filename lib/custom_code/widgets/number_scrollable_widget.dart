@@ -42,7 +42,9 @@ class _NumberScrollableWidgetState extends State<NumberScrollableWidget> {
           value: widget.currentAya,
           minValue: 1,
           maxValue: widget.totalAyat,
-          onChanged: (value) => widget.onChangeValue,
+          onChanged: (value) {
+            widget.onChangeValue.call();
+          },
         ),
       ],
     ));
