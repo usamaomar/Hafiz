@@ -378,9 +378,10 @@ class _AddHifzComponentDialogWidgetState
                                 'savedAyahList':
                                     getSavedSuraModelListFirestoreData(
                                   functions.getOrAddSurasList(
-                                      UserModelStruct().toMap() != ''
+                                      widget.sonModel != null &&
+                                              widget.sonModel != ''
                                           ? UserModelStruct.fromMap(
-                                              UserModelStruct().toMap())
+                                              widget.sonModel)
                                           : null,
                                       _model.savedSuraModel),
                                 ),
