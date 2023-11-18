@@ -204,14 +204,21 @@ List<SavedSuraModelStruct>? getOrAddSurasList(
   SavedSuraModelStruct? savedSuraModel,
 ) {
   List<SavedSuraModelStruct> savedAyahListLocal = [];
-  if (sonModel?.savedAyahList == null) {
+  if (sonModel?.savedAyahList.isEmpty ?? true) {
     savedAyahListLocal.add(savedSuraModel ?? SavedSuraModelStruct());
+    return savedAyahListLocal;
   } else {
-    for (SavedSuraModelStruct item in sonModel?.savedAyahList ?? []) {
-      if (item.ayahId == savedSuraModel?.ayahId) {
-        item.savedAyah = savedSuraModel?.savedAyah;
-        item.savedAyahDate = savedSuraModel?.savedAyahDate;
+    bool containsId = (sonModel?.savedAyahList ?? [])
+        .any((model) => model.ayahId == savedSuraModel?.ayahId);
+    if (containsId) {
+      for (SavedSuraModelStruct item in sonModel?.savedAyahList ?? []) {
+        if (item.ayahId == savedSuraModel?.ayahId) {
+          item.savedAyah = savedSuraModel?.savedAyah;
+          item.savedAyahDate = savedSuraModel?.savedAyahDate;
+        }
       }
+    } else {
+      sonModel?.savedAyahList.add(savedSuraModel ?? SavedSuraModelStruct());
     }
     // sonModel?.savedAyahList.map.toString
     return sonModel?.savedAyahList;
