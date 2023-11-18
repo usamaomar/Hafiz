@@ -113,7 +113,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'SurahsPage',
           path: '/surahsPage',
-          builder: (context, params) => const SurahsPageWidget(),
+          builder: (context, params) => SurahsPageWidget(
+            sonModel: params.getParam('sonModel', ParamType.JSON),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

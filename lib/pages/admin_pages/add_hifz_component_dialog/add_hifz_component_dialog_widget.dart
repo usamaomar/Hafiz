@@ -1,5 +1,3 @@
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -11,7 +9,14 @@ import 'add_hifz_component_dialog_model.dart';
 export 'add_hifz_component_dialog_model.dart';
 
 class AddHifzComponentDialogWidget extends StatefulWidget {
-  const AddHifzComponentDialogWidget({super.key});
+  const AddHifzComponentDialogWidget({
+    super.key,
+    required this.suraJsonModel,
+    required this.sonModel,
+  });
+
+  final dynamic suraJsonModel;
+  final dynamic sonModel;
 
   @override
   _AddHifzComponentDialogWidgetState createState() =>
@@ -75,6 +80,7 @@ class _AddHifzComponentDialogWidgetState
             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -86,7 +92,7 @@ class _AddHifzComponentDialogWidgetState
                     children: [
                       Text(
                         FFLocalizations.of(context).getText(
-                          '99uxnvjy' /* Basic Dialog Title */,
+                          '99uxnvjy' /* Record  Save */,
                         ),
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).headlineMedium,
@@ -203,7 +209,7 @@ class _AddHifzComponentDialogWidgetState
                                             valueOrDefault<String>(
                                               FFAppState()
                                                   .timeModelAppState
-                                                  .initValue
+                                                  .calculationValue
                                                   .toString(),
                                               '0',
                                             ),
@@ -257,20 +263,59 @@ class _AddHifzComponentDialogWidgetState
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      SizedBox(
-                        width: 150.0,
-                        height: 100.0,
-                        child: custom_widgets.NumberScrollableWidget(
-                          width: 150.0,
-                          height: 100.0,
-                          currentAya: 55,
-                          totalAyat: 150,
-                          timeModel: TimeModelStruct(
-                            initValue: 0,
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 10.0),
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 2.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              border: Border.all(
+                                color: const Color(0xFF39D485),
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 10.0, 10.0, 10.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SizedBox(
+                                    width: 50.0,
+                                    height: 150.0,
+                                    child:
+                                        custom_widgets.NumberScrollableWidget(
+                                      width: 50.0,
+                                      height: 150.0,
+                                      maxAyat: getJsonField(
+                                        widget.suraJsonModel,
+                                        r'''$.numberOfAyahs''',
+                                      ),
+                                      onChangeValue: () async {
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      'isuz2h0i' /* Saved Until Ayah */,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: const Color(0xFF39D485),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          onChangeValue: () async {
-                            setState(() {});
-                          },
                         ),
                       ),
                     ],
@@ -291,7 +336,7 @@ class _AddHifzComponentDialogWidgetState
                             print('Button pressed ...');
                           },
                           text: FFLocalizations.of(context).getText(
-                            'cli486je' /* Action 2 */,
+                            'cli486je' /* Cancel */,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
@@ -302,17 +347,29 @@ class _AddHifzComponentDialogWidgetState
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             textStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            elevation: 0.0,
+                            elevation: 2.0,
                             borderRadius: BorderRadius.circular(40.0),
                           ),
                         ),
                       ),
                       FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
+                        onPressed: () async {
+                          setState(() {
+                            _model.updateSavedSuraModelStruct(
+                              (e) => e
+                                ..savedAyah = FFAppState()
+                                    .timeModelAppState
+                                    .calculationValue
+                                ..ayahId = getJsonField(
+                                  widget.suraJsonModel,
+                                  r'''$.number''',
+                                )
+                                ..savedAyahDate = getCurrentTimestamp,
+                            );
+                          });
                         },
                         text: FFLocalizations.of(context).getText(
-                          'lj4trl7s' /* Action 1 */,
+                          'lj4trl7s' /* Save */,
                         ),
                         options: FFButtonOptions(
                           height: 40.0,
@@ -322,7 +379,7 @@ class _AddHifzComponentDialogWidgetState
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context).titleSmall,
-                          elevation: 0.0,
+                          elevation: 2.0,
                           borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),

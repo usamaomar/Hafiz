@@ -9,11 +9,9 @@ class AddHifzComponentDialogModel
     extends FlutterFlowModel<AddHifzComponentDialogWidget> {
   ///  Local state fields for this component.
 
-  int updatedInt = 0;
-
-  TimeModelStruct? timeModel;
-  void updateTimeModelStruct(Function(TimeModelStruct) updateFn) =>
-      updateFn(timeModel ??= TimeModelStruct());
+  SavedSuraModelStruct? savedSuraModel;
+  void updateSavedSuraModelStruct(Function(SavedSuraModelStruct) updateFn) =>
+      updateFn(savedSuraModel ??= SavedSuraModelStruct());
 
   ///  State fields for stateful widgets in this component.
 

@@ -3,7 +3,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -19,6 +18,7 @@ class UserModelStruct extends FFFirebaseStruct {
     DocumentReference? adminReference,
     DocumentReference? centerReference,
     String? age,
+    List<SavedSuraModelStruct>? savedAyahList,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _displayName = displayName,
         _createdTime = createdTime,
@@ -29,6 +29,7 @@ class UserModelStruct extends FFFirebaseStruct {
         _adminReference = adminReference,
         _centerReference = centerReference,
         _age = age,
+        _savedAyahList = savedAyahList,
         super(firestoreUtilData);
 
   // "display_name" field.
@@ -86,6 +87,14 @@ class UserModelStruct extends FFFirebaseStruct {
   set age(String? val) => _age = val;
   bool hasAge() => _age != null;
 
+  // "savedAyahList" field.
+  List<SavedSuraModelStruct>? _savedAyahList;
+  List<SavedSuraModelStruct> get savedAyahList => _savedAyahList ?? const [];
+  set savedAyahList(List<SavedSuraModelStruct>? val) => _savedAyahList = val;
+  void updateSavedAyahList(Function(List<SavedSuraModelStruct>) updateFn) =>
+      updateFn(_savedAyahList ??= []);
+  bool hasSavedAyahList() => _savedAyahList != null;
+
   static UserModelStruct fromMap(Map<String, dynamic> data) => UserModelStruct(
         displayName: data['display_name'] as String?,
         createdTime: data['created_time'] as DateTime?,
@@ -96,6 +105,10 @@ class UserModelStruct extends FFFirebaseStruct {
         adminReference: data['admin_reference'] as DocumentReference?,
         centerReference: data['center_reference'] as DocumentReference?,
         age: data['age'] as String?,
+        savedAyahList: getStructList(
+          data['savedAyahList'],
+          SavedSuraModelStruct.fromMap,
+        ),
       );
 
   static UserModelStruct? maybeFromMap(dynamic data) =>
@@ -111,6 +124,7 @@ class UserModelStruct extends FFFirebaseStruct {
         'admin_reference': _adminReference,
         'center_reference': _centerReference,
         'age': _age,
+        'savedAyahList': _savedAyahList?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -150,6 +164,11 @@ class UserModelStruct extends FFFirebaseStruct {
         'age': serializeParam(
           _age,
           ParamType.String,
+        ),
+        'savedAyahList': serializeParam(
+          _savedAyahList,
+          ParamType.DataStruct,
+          true,
         ),
       }.withoutNulls;
 
@@ -203,6 +222,12 @@ class UserModelStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        savedAyahList: deserializeStructParam<SavedSuraModelStruct>(
+          data['savedAyahList'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: SavedSuraModelStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -210,6 +235,7 @@ class UserModelStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is UserModelStruct &&
         displayName == other.displayName &&
         createdTime == other.createdTime &&
@@ -219,7 +245,8 @@ class UserModelStruct extends FFFirebaseStruct {
         modelReference == other.modelReference &&
         adminReference == other.adminReference &&
         centerReference == other.centerReference &&
-        age == other.age;
+        age == other.age &&
+        listEquality.equals(savedAyahList, other.savedAyahList);
   }
 
   @override
@@ -232,7 +259,8 @@ class UserModelStruct extends FFFirebaseStruct {
         modelReference,
         adminReference,
         centerReference,
-        age
+        age,
+        savedAyahList
       ]);
 }
 

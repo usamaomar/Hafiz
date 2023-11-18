@@ -13,7 +13,12 @@ import 'surahs_page_model.dart';
 export 'surahs_page_model.dart';
 
 class SurahsPageWidget extends StatefulWidget {
-  const SurahsPageWidget({super.key});
+  const SurahsPageWidget({
+    super.key,
+    required this.sonModel,
+  });
+
+  final dynamic sonModel;
 
   @override
   _SurahsPageWidgetState createState() => _SurahsPageWidgetState();
@@ -244,9 +249,18 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                                 .requestFocus(
                                                     _model.unfocusNode)
                                             : FocusScope.of(context).unfocus(),
-                                        child: const SizedBox(
+                                        child: SizedBox(
                                           height: 500.0,
-                                          child: AddHifzComponentDialogWidget(),
+                                          child: AddHifzComponentDialogWidget(
+                                            suraJsonModel: getJsonField(
+                                              listOfSuraItem,
+                                              r'''$''',
+                                            ),
+                                            sonModel: getJsonField(
+                                              widget.sonModel,
+                                              r'''$''',
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     );

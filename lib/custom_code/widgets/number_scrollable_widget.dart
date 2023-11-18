@@ -17,18 +17,14 @@ class NumberScrollableWidget extends StatefulWidget {
     Key? key,
     this.width,
     this.height,
-    required this.currentAya,
-    required this.totalAyat,
+    required this.maxAyat,
     required this.onChangeValue,
-    required this.timeModel,
   }) : super(key: key);
 
   final double? width;
   final double? height;
-  final int currentAya;
-  final int totalAyat;
+  final int maxAyat;
   final Future<dynamic> Function() onChangeValue;
-  final TimeModelStruct timeModel;
 
   @override
   _NumberScrollableWidgetState createState() => _NumberScrollableWidgetState();
@@ -41,11 +37,11 @@ class _NumberScrollableWidgetState extends State<NumberScrollableWidget> {
         child: Column(
       children: <Widget>[
         NumberPicker(
-          value: widget.currentAya,
+          value: FFAppState().timeModelAppState.calculationValue,
           minValue: 1,
-          maxValue: widget.totalAyat,
+          maxValue: widget.maxAyat,
           onChanged: (value) {
-            widget.timeModel..initValue = 10;
+            FFAppState().timeModelAppState.calculationValue = value;
             widget.onChangeValue.call();
           },
         ),

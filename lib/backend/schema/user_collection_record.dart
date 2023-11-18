@@ -59,6 +59,11 @@ class UserCollectionRecord extends FirestoreRecord {
   String get age => _age ?? '';
   bool hasAge() => _age != null;
 
+  // "savedAyahList" field.
+  List<SavedSuraModelStruct>? _savedAyahList;
+  List<SavedSuraModelStruct> get savedAyahList => _savedAyahList ?? const [];
+  bool hasSavedAyahList() => _savedAyahList != null;
+
   void _initializeFields() {
     _displayName = snapshotData['display_name'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
@@ -69,6 +74,10 @@ class UserCollectionRecord extends FirestoreRecord {
     _centerReference = snapshotData['center_reference'] as DocumentReference?;
     _parentsReference = snapshotData['parents_reference'] as DocumentReference?;
     _age = snapshotData['age'] as String?;
+    _savedAyahList = getStructList(
+      snapshotData['savedAyahList'],
+      SavedSuraModelStruct.fromMap,
+    );
   }
 
   static CollectionReference get collection =>
@@ -139,6 +148,7 @@ class UserCollectionRecordDocumentEquality
 
   @override
   bool equals(UserCollectionRecord? e1, UserCollectionRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.displayName == e2?.displayName &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
@@ -147,7 +157,8 @@ class UserCollectionRecordDocumentEquality
         e1?.adminReference == e2?.adminReference &&
         e1?.centerReference == e2?.centerReference &&
         e1?.parentsReference == e2?.parentsReference &&
-        e1?.age == e2?.age;
+        e1?.age == e2?.age &&
+        listEquality.equals(e1?.savedAyahList, e2?.savedAyahList);
   }
 
   @override
@@ -160,7 +171,8 @@ class UserCollectionRecordDocumentEquality
         e?.adminReference,
         e?.centerReference,
         e?.parentsReference,
-        e?.age
+        e?.age,
+        e?.savedAyahList
       ]);
 
   @override

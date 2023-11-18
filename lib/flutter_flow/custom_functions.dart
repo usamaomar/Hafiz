@@ -198,3 +198,22 @@ List<dynamic> filterSuraModelsList(
         item['name'].contains(searchText);
   }).toList();
 }
+
+List<SavedSuraModelStruct>? getOrAddSurasList(
+  UserModelStruct? sonModel,
+  SavedSuraModelStruct? savedSuraModel,
+) {
+  List<SavedSuraModelStruct> savedAyahListLocal = [];
+  if (sonModel?.savedAyahList == null) {
+    savedAyahListLocal.add(savedSuraModel ?? SavedSuraModelStruct());
+  } else {
+    for (SavedSuraModelStruct item in sonModel?.savedAyahList ?? []) {
+      if (item.ayahId == savedSuraModel?.ayahId) {
+        item.savedAyah = savedSuraModel?.savedAyah;
+        item.savedAyahDate = savedSuraModel?.savedAyahDate;
+      }
+    }
+    // sonModel?.savedAyahList.map.toString
+    return sonModel?.savedAyahList;
+  }
+}

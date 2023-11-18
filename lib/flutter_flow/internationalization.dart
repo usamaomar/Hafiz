@@ -525,8 +525,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // AddHifzComponentDialog
   {
     '99uxnvjy': {
-      'en': 'Basic Dialog Title',
-      'ar': '',
+      'en': 'Record  Save',
+      'ar': 'سجل الحفظ',
     },
     'cru582zd': {
       'en': 'A',
@@ -536,13 +536,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '100+',
       'ar': '',
     },
+    'isuz2h0i': {
+      'en': 'Saved Until Ayah',
+      'ar': 'تم الحفظ حتى آية',
+    },
     'cli486je': {
-      'en': 'Action 2',
-      'ar': '',
+      'en': 'Cancel',
+      'ar': 'يلغي',
     },
     'lj4trl7s': {
-      'en': 'Action 1',
-      'ar': '',
+      'en': 'Save',
+      'ar': 'يحفظ',
     },
   },
   // Miscellaneous

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -153,7 +154,8 @@ class FFAppState extends ChangeNotifier {
     _appStateCenterList.insert(index, value);
   }
 
-  TimeModelStruct _timeModelAppState = TimeModelStruct();
+  TimeModelStruct _timeModelAppState = TimeModelStruct.fromSerializableMap(
+      jsonDecode('{"calculationValue":"1"}'));
   TimeModelStruct get timeModelAppState => _timeModelAppState;
   set timeModelAppState(TimeModelStruct value) {
     _timeModelAppState = value;

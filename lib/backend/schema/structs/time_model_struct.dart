@@ -10,41 +10,42 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class TimeModelStruct extends FFFirebaseStruct {
   TimeModelStruct({
-    int? initValue,
+    int? calculationValue,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
-  })  : _initValue = initValue,
+  })  : _calculationValue = calculationValue,
         super(firestoreUtilData);
 
-  // "initValue" field.
-  int? _initValue;
-  int get initValue => _initValue ?? 0;
-  set initValue(int? val) => _initValue = val;
-  void incrementInitValue(int amount) => _initValue = initValue + amount;
-  bool hasInitValue() => _initValue != null;
+  // "calculationValue" field.
+  int? _calculationValue;
+  int get calculationValue => _calculationValue ?? 0;
+  set calculationValue(int? val) => _calculationValue = val;
+  void incrementCalculationValue(int amount) =>
+      _calculationValue = calculationValue + amount;
+  bool hasCalculationValue() => _calculationValue != null;
 
   static TimeModelStruct fromMap(Map<String, dynamic> data) => TimeModelStruct(
-        initValue: castToType<int>(data['initValue']),
+        calculationValue: castToType<int>(data['calculationValue']),
       );
 
   static TimeModelStruct? maybeFromMap(dynamic data) =>
       data is Map<String, dynamic> ? TimeModelStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
-        'initValue': _initValue,
+        'calculationValue': _calculationValue,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'initValue': serializeParam(
-          _initValue,
+        'calculationValue': serializeParam(
+          _calculationValue,
           ParamType.int,
         ),
       }.withoutNulls;
 
   static TimeModelStruct fromSerializableMap(Map<String, dynamic> data) =>
       TimeModelStruct(
-        initValue: deserializeParam(
-          data['initValue'],
+        calculationValue: deserializeParam(
+          data['calculationValue'],
           ParamType.int,
           false,
         ),
@@ -55,22 +56,23 @@ class TimeModelStruct extends FFFirebaseStruct {
 
   @override
   bool operator ==(Object other) {
-    return other is TimeModelStruct && initValue == other.initValue;
+    return other is TimeModelStruct &&
+        calculationValue == other.calculationValue;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([initValue]);
+  int get hashCode => const ListEquality().hash([calculationValue]);
 }
 
 TimeModelStruct createTimeModelStruct({
-  int? initValue,
+  int? calculationValue,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
   bool delete = false,
 }) =>
     TimeModelStruct(
-      initValue: initValue,
+      calculationValue: calculationValue,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

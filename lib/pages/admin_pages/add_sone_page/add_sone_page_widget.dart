@@ -377,7 +377,15 @@ class _AddSonePageWidgetState extends State<AddSonePageWidget> {
                                                 size: 24.0,
                                               ),
                                               onPressed: () async {
-                                                context.pushNamed('SurahsPage');
+                                                context.pushNamed(
+                                                  'SurahsPage',
+                                                  queryParameters: {
+                                                    'sonModel': serializeParam(
+                                                      dataListItem.toMap(),
+                                                      ParamType.JSON,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
                                               },
                                             ),
                                           ),
