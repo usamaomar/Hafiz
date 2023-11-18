@@ -15,10 +15,12 @@ class AddHifzComponentDialogWidget extends StatefulWidget {
     super.key,
     required this.suraJsonModel,
     required this.sonModel,
+    required this.soneReference,
   });
 
   final dynamic suraJsonModel;
   final dynamic sonModel;
+  final DocumentReference? soneReference;
 
   @override
   _AddHifzComponentDialogWidgetState createState() =>
@@ -370,9 +372,7 @@ class _AddHifzComponentDialogWidgetState
                             );
                           });
 
-                          await UserModelStruct.fromMap(widget.sonModel!)
-                              .modelReference!
-                              .update({
+                          await widget.soneReference!.update({
                             ...mapToFirestore(
                               {
                                 'savedAyahList':

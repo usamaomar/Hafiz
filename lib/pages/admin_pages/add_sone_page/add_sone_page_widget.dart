@@ -384,6 +384,15 @@ class _AddSonePageWidgetState extends State<AddSonePageWidget> {
                                                       dataListItem.toMap(),
                                                       ParamType.JSON,
                                                     ),
+                                                    'soneReference':
+                                                        serializeParam(
+                                                      _model
+                                                          .firebaseListOfUseres?[
+                                                              dataListIndex]
+                                                          .reference,
+                                                      ParamType
+                                                          .DocumentReference,
+                                                    ),
                                                   }.withoutNulls,
                                                 );
                                               },

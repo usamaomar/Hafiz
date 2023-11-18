@@ -115,6 +115,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/surahsPage',
           builder: (context, params) => SurahsPageWidget(
             sonModel: params.getParam('sonModel', ParamType.JSON),
+            soneReference: params.getParam('soneReference',
+                ParamType.DocumentReference, false, ['userCollection']),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

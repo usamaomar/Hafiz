@@ -16,9 +16,11 @@ class SurahsPageWidget extends StatefulWidget {
   const SurahsPageWidget({
     super.key,
     required this.sonModel,
+    required this.soneReference,
   });
 
   final dynamic sonModel;
+  final DocumentReference? soneReference;
 
   @override
   _SurahsPageWidgetState createState() => _SurahsPageWidgetState();
@@ -260,6 +262,8 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                               widget.sonModel,
                                               r'''$''',
                                             ),
+                                            soneReference:
+                                                widget.soneReference!,
                                           ),
                                         ),
                                       ),
