@@ -51,6 +51,7 @@ List<UserModelStruct> convertFromFirebaseToUserList(
         displayName: item.displayName,
         password: item.password,
         age: item.age,
+        savedAyahList: item.savedAyahList,
         phoneNumber: item.phoneNumber,
         userType: item.userType));
   }
