@@ -11,8 +11,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 class TimeModelStruct extends FFFirebaseStruct {
   TimeModelStruct({
     int? calculationValue,
+    int? sufxCalculationModel,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _calculationValue = calculationValue,
+        _sufxCalculationModel = sufxCalculationModel,
         super(firestoreUtilData);
 
   // "calculationValue" field.
@@ -23,8 +25,17 @@ class TimeModelStruct extends FFFirebaseStruct {
       _calculationValue = calculationValue + amount;
   bool hasCalculationValue() => _calculationValue != null;
 
+  // "sufxCalculationModel" field.
+  int? _sufxCalculationModel;
+  int get sufxCalculationModel => _sufxCalculationModel ?? 0;
+  set sufxCalculationModel(int? val) => _sufxCalculationModel = val;
+  void incrementSufxCalculationModel(int amount) =>
+      _sufxCalculationModel = sufxCalculationModel + amount;
+  bool hasSufxCalculationModel() => _sufxCalculationModel != null;
+
   static TimeModelStruct fromMap(Map<String, dynamic> data) => TimeModelStruct(
         calculationValue: castToType<int>(data['calculationValue']),
+        sufxCalculationModel: castToType<int>(data['sufxCalculationModel']),
       );
 
   static TimeModelStruct? maybeFromMap(dynamic data) =>
@@ -32,12 +43,17 @@ class TimeModelStruct extends FFFirebaseStruct {
 
   Map<String, dynamic> toMap() => {
         'calculationValue': _calculationValue,
+        'sufxCalculationModel': _sufxCalculationModel,
       }.withoutNulls;
 
   @override
   Map<String, dynamic> toSerializableMap() => {
         'calculationValue': serializeParam(
           _calculationValue,
+          ParamType.int,
+        ),
+        'sufxCalculationModel': serializeParam(
+          _sufxCalculationModel,
           ParamType.int,
         ),
       }.withoutNulls;
@@ -49,6 +65,11 @@ class TimeModelStruct extends FFFirebaseStruct {
           ParamType.int,
           false,
         ),
+        sufxCalculationModel: deserializeParam(
+          data['sufxCalculationModel'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -57,15 +78,18 @@ class TimeModelStruct extends FFFirebaseStruct {
   @override
   bool operator ==(Object other) {
     return other is TimeModelStruct &&
-        calculationValue == other.calculationValue;
+        calculationValue == other.calculationValue &&
+        sufxCalculationModel == other.sufxCalculationModel;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([calculationValue]);
+  int get hashCode =>
+      const ListEquality().hash([calculationValue, sufxCalculationModel]);
 }
 
 TimeModelStruct createTimeModelStruct({
   int? calculationValue,
+  int? sufxCalculationModel,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -73,6 +97,7 @@ TimeModelStruct createTimeModelStruct({
 }) =>
     TimeModelStruct(
       calculationValue: calculationValue,
+      sufxCalculationModel: sufxCalculationModel,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

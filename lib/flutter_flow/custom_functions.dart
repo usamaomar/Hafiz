@@ -225,3 +225,30 @@ List<SavedSuraModelStruct>? getOrAddSurasList(
     return sonModel?.savedAyahList;
   }
 }
+
+UserModelStruct convertFromFirebaseToUserModel(
+    UserCollectionRecord soneFirebaseUserObject) {
+  return UserModelStruct(
+      userType: soneFirebaseUserObject.userType,
+      modelReference: soneFirebaseUserObject.reference,
+      adminReference: soneFirebaseUserObject.adminReference,
+      centerReference: soneFirebaseUserObject.centerReference,
+      age: soneFirebaseUserObject.age,
+      createdTime: soneFirebaseUserObject.createdTime,
+      savedAyahList: soneFirebaseUserObject.savedAyahList,
+      displayName: soneFirebaseUserObject.displayName);
+}
+
+SavedSuraModelStruct? getSavedAyahModelFromFirbase(
+  UserModelStruct userModel,
+  int suraId,
+) {
+  SavedSuraModelStruct savedModel = userModel.savedAyahList
+      .firstWhere((currency) => currency.ayahId == suraId);
+  return SavedSuraModelStruct(
+      savedAyah: savedModel.savedAyah,
+      nextSavedAyah: savedModel.nextSavedAyah,
+      savedAyahDate: savedModel.savedAyahDate,
+      nextSavedAyahDate: savedModel.nextSavedAyahDate,
+      ayahId: savedModel.ayahId);
+}

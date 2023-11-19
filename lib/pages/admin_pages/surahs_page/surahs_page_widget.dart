@@ -234,6 +234,7 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                               highlightColor: Colors.transparent,
                               onTap: () async {
                                 await showAlignedDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   isGlobal: true,
                                   avoidOverflow: false,
@@ -256,10 +257,6 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                           child: AddHifzComponentDialogWidget(
                                             suraJsonModel: getJsonField(
                                               listOfSuraItem,
-                                              r'''$''',
-                                            ),
-                                            sonModel: getJsonField(
-                                              widget.sonModel,
                                               r'''$''',
                                             ),
                                             soneReference:

@@ -6,6 +6,7 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'add_hifz_component_dialog_model.dart';
 export 'add_hifz_component_dialog_model.dart';
@@ -14,12 +15,10 @@ class AddHifzComponentDialogWidget extends StatefulWidget {
   const AddHifzComponentDialogWidget({
     super.key,
     required this.suraJsonModel,
-    required this.sonModel,
     required this.soneReference,
   });
 
   final dynamic suraJsonModel;
-  final dynamic sonModel;
   final DocumentReference? soneReference;
 
   @override
@@ -41,6 +40,43 @@ class _AddHifzComponentDialogWidgetState
   void initState() {
     super.initState();
     _model = createModel(context, () => AddHifzComponentDialogModel());
+
+    // On component load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().timeModelAppState = TimeModelStruct(
+          calculationValue: 1,
+        );
+      });
+      _model.soneFireBaseModel =
+          await UserCollectionRecord.getDocumentOnce(widget.soneReference!);
+      setState(() {
+        _model.soneUserModel =
+            functions.convertFromFirebaseToUserModel(_model.sonFirebaseObject!);
+      });
+      if (_model.soneUserModel!.savedAyahList.isNotEmpty) {
+        setState(() {
+          FFAppState().timeModelAppState = TimeModelStruct(
+            calculationValue: functions
+                .getSavedAyahModelFromFirbase(
+                    _model.soneUserModel!,
+                    getJsonField(
+                      widget.suraJsonModel,
+                      r'''$.number''',
+                    ))
+                ?.savedAyah,
+            sufxCalculationModel: functions
+                .getSavedAyahModelFromFirbase(
+                    _model.soneUserModel!,
+                    getJsonField(
+                      widget.suraJsonModel,
+                      r'''$.number''',
+                    ))
+                ?.nextSavedAyah,
+          );
+        });
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -101,10 +137,24 @@ class _AddHifzComponentDialogWidgetState
                         textAlign: TextAlign.start,
                         style: FlutterFlowTheme.of(context).headlineMedium,
                       ),
-                      Icon(
-                        Icons.close,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        size: 24.0,
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          setState(() {
+                            FFAppState().timeModelAppState = TimeModelStruct(
+                              calculationValue: 1,
+                            );
+                          });
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
                       ),
                     ],
                   ),
@@ -336,8 +386,13 @@ class _AddHifzComponentDialogWidgetState
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            setState(() {
+                              FFAppState().timeModelAppState = TimeModelStruct(
+                                calculationValue: 1,
+                              );
+                            });
+                            Navigator.pop(context);
                           },
                           text: FFLocalizations.of(context).getText(
                             'cli486je' /* Cancel */,
@@ -371,6 +426,15 @@ class _AddHifzComponentDialogWidgetState
                                 ..savedAyahDate = getCurrentTimestamp,
                             );
                           });
+                          _model.sonFirebaseObject =
+                              await UserCollectionRecord.getDocumentOnce(
+                                  widget.soneReference!);
+                          setState(() {
+                            _model.soneJsonModel = functions
+                                .convertFromFirebaseToUserModel(
+                                    _model.sonFirebaseObject!)
+                                .toMap();
+                          });
 
                           await widget.soneReference!.update({
                             ...mapToFirestore(
@@ -378,16 +442,35 @@ class _AddHifzComponentDialogWidgetState
                                 'savedAyahList':
                                     getSavedSuraModelListFirestoreData(
                                   functions.getOrAddSurasList(
-                                      widget.sonModel != null &&
-                                              widget.sonModel != ''
+                                      getJsonField(
+                                                    _model.soneJsonModel,
+                                                    r'''$''',
+                                                  ) !=
+                                                  null &&
+                                              getJsonField(
+                                                    _model.soneJsonModel,
+                                                    r'''$''',
+                                                  ) !=
+                                                  ''
                                           ? UserModelStruct.fromMap(
-                                              widget.sonModel)
+                                              getJsonField(
+                                              _model.soneJsonModel,
+                                              r'''$''',
+                                            ))
                                           : null,
                                       _model.savedSuraModel),
                                 ),
                               },
                             ),
                           });
+                          setState(() {
+                            FFAppState().timeModelAppState = TimeModelStruct(
+                              calculationValue: 1,
+                            );
+                          });
+                          Navigator.pop(context);
+
+                          setState(() {});
                         },
                         text: FFLocalizations.of(context).getText(
                           'lj4trl7s' /* Save */,
