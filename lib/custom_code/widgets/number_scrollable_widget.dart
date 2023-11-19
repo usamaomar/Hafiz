@@ -13,17 +13,19 @@ import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class NumberScrollableWidget extends StatefulWidget {
-  const NumberScrollableWidget({
-    Key? key,
-    this.width,
-    this.height,
-    required this.maxAyat,
-    required this.onChangeValue,
-  }) : super(key: key);
+  const NumberScrollableWidget(
+      {Key? key,
+      this.width,
+      this.height,
+      required this.maxAyat,
+      required this.onChangeValue,
+      required this.isSavedCurrent})
+      : super(key: key);
 
   final double? width;
   final double? height;
   final int maxAyat;
+  final bool? isSavedCurrent;
   final Future<dynamic> Function() onChangeValue;
 
   @override
@@ -37,11 +39,17 @@ class _NumberScrollableWidgetState extends State<NumberScrollableWidget> {
         child: Column(
       children: <Widget>[
         NumberPicker(
-          value: FFAppState().timeModelAppState.calculationValue,
+          value: widget.isSavedCurrent == true
+              ? FFAppState().timeModelAppState.calculationValue
+              : FFAppState().timeModelAppState.sufxCalculationModel,
           minValue: 1,
           maxValue: widget.maxAyat,
           onChanged: (value) {
-            FFAppState().timeModelAppState.calculationValue = value;
+            if (widget.isSavedCurrent == true) {
+              FFAppState().timeModelAppState.calculationValue = value;
+            } else {
+              FFAppState().timeModelAppState.sufxCalculationModel = value;
+            }
             widget.onChangeValue.call();
           },
         ),

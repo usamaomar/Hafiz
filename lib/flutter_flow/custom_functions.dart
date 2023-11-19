@@ -216,6 +216,8 @@ List<SavedSuraModelStruct>? getOrAddSurasList(
         if (item.ayahId == savedSuraModel?.ayahId) {
           item.savedAyah = savedSuraModel?.savedAyah;
           item.savedAyahDate = savedSuraModel?.savedAyahDate;
+          item.nextSavedAyah = savedSuraModel?.nextSavedAyah;
+          item.nextSavedAyahDate = savedSuraModel?.nextSavedAyahDate;
         }
       }
     } else {

@@ -528,17 +528,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Record  Save',
       'ar': 'سجل الحفظ',
     },
-    'cru582zd': {
-      'en': 'A',
-      'ar': '',
-    },
-    'ff7hgyq5': {
-      'en': '100+',
-      'ar': '',
-    },
     'isuz2h0i': {
       'en': 'Saved Until Ayah',
       'ar': 'تم الحفظ حتى آية',
+    },
+    '8cl4qwyc': {
+      'en': 'Save Next Time',
+      'ar': 'حفظ في المرة القادمة',
     },
     'cli486je': {
       'en': 'Cancel',

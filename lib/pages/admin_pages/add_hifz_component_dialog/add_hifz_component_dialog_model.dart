@@ -22,8 +22,6 @@ class AddHifzComponentDialogModel
 
   // Stores action output result for [Backend Call - Read Document] action in AddHifzComponentDialog widget.
   UserCollectionRecord? soneFireBaseModel;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue;
   // Stores action output result for [Backend Call - Read Document] action in Button widget.
   UserCollectionRecord? sonFirebaseObject;
 

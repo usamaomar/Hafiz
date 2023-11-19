@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -43,16 +42,15 @@ class _AddHifzComponentDialogWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().timeModelAppState = TimeModelStruct(
-          calculationValue: 1,
-        );
-      });
+      FFAppState().timeModelAppState = TimeModelStruct(
+        calculationValue: 1,
+        sufxCalculationModel: 1,
+      );
       _model.soneFireBaseModel =
           await UserCollectionRecord.getDocumentOnce(widget.soneReference!);
       setState(() {
         _model.soneUserModel =
-            functions.convertFromFirebaseToUserModel(_model.sonFirebaseObject!);
+            functions.convertFromFirebaseToUserModel(_model.soneFireBaseModel!);
       });
       if (_model.soneUserModel!.savedAyahList.isNotEmpty) {
         setState(() {
@@ -159,163 +157,11 @@ class _AddHifzComponentDialogWidgetState
                     ],
                   ),
                 ),
-                ListView(
-                  padding: EdgeInsets.zero,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Stack(
-                      children: [
-                        const Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  25.0, 0.0, 25.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 30.0,
-                                    child: StyledVerticalDivider(
-                                      thickness: 3.0,
-                                      color: Color(0xFF092853),
-                                      lineStyle: DividerLineStyle.dotted,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  25.0, 0.0, 25.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 30.0,
-                                    child: StyledVerticalDivider(
-                                      thickness: 3.0,
-                                      color: Color(0xFF092853),
-                                      lineStyle: DividerLineStyle.dotted,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 0.0, 16.0, 1.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.transparent,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 0.0,
-                                  color: Color(0x00F1F4F8),
-                                  offset: Offset(0.0, 1.0),
-                                )
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 12.0, 8.0, 12.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    width: 36.0,
-                                    height: 36.0,
-                                    decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    alignment: const AlignmentDirectional(0.00, 0.00),
-                                    child: Text(
-                                      FFLocalizations.of(context).getText(
-                                        'cru582zd' /* A */,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Colors.white,
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 12.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            valueOrDefault<String>(
-                                              FFAppState()
-                                                  .timeModelAppState
-                                                  .calculationValue
-                                                  .toString(),
-                                              '0',
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge,
-                                          ),
-                                          Text(
-                                            FFLocalizations.of(context).getText(
-                                              'ff7hgyq5' /* 100+ */,
-                                            ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Theme(
-                                    data: ThemeData(
-                                      checkboxTheme: CheckboxThemeData(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4.0),
-                                        ),
-                                      ),
-                                      unselectedWidgetColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                    ),
-                                    child: Checkbox(
-                                      value: _model.checkboxValue ??= true,
-                                      onChanged: (newValue) async {
-                                        setState(() =>
-                                            _model.checkboxValue = newValue!);
-                                      },
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
@@ -349,6 +195,7 @@ class _AddHifzComponentDialogWidgetState
                                         widget.suraJsonModel,
                                         r'''$.numberOfAyahs''',
                                       ),
+                                      isSavedCurrent: true,
                                       onChangeValue: () async {
                                         setState(() {});
                                       },
@@ -364,6 +211,62 @@ class _AddHifzComponentDialogWidgetState
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: const Color(0xFF39D485),
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            10.0, 10.0, 10.0, 10.0),
+                        child: Material(
+                          color: Colors.transparent,
+                          elevation: 2.0,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              border: Border.all(
+                                color: const Color(0xFFE9B33C),
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 10.0, 10.0, 10.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  SizedBox(
+                                    width: 50.0,
+                                    height: 150.0,
+                                    child:
+                                        custom_widgets.NumberScrollableWidget(
+                                      width: 50.0,
+                                      height: 150.0,
+                                      maxAyat: getJsonField(
+                                        widget.suraJsonModel,
+                                        r'''$.numberOfAyahs''',
+                                      ),
+                                      isSavedCurrent: false,
+                                      onChangeValue: () async {
+                                        setState(() {});
+                                      },
+                                    ),
+                                  ),
+                                  Text(
+                                    FFLocalizations.of(context).getText(
+                                      '8cl4qwyc' /* Save Next Time */,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: const Color(0xFFE9B33C),
                                         ),
                                   ),
                                 ],
@@ -423,7 +326,10 @@ class _AddHifzComponentDialogWidgetState
                                   widget.suraJsonModel,
                                   r'''$.number''',
                                 )
-                                ..savedAyahDate = getCurrentTimestamp,
+                                ..savedAyahDate = getCurrentTimestamp
+                                ..nextSavedAyah = FFAppState()
+                                    .timeModelAppState
+                                    .sufxCalculationModel,
                             );
                           });
                           _model.sonFirebaseObject =
