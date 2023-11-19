@@ -245,12 +245,17 @@ SavedSuraModelStruct? getSavedAyahModelFromFirbase(
   UserModelStruct userModel,
   int suraId,
 ) {
-  SavedSuraModelStruct savedModel = userModel.savedAyahList
-      .firstWhere((currency) => currency.ayahId == suraId);
-  return SavedSuraModelStruct(
-      savedAyah: savedModel.savedAyah,
-      nextSavedAyah: savedModel.nextSavedAyah,
-      savedAyahDate: savedModel.savedAyahDate,
-      nextSavedAyahDate: savedModel.nextSavedAyahDate,
-      ayahId: savedModel.ayahId);
+  if (userModel.savedAyahList.isEmpty) {
+    return SavedSuraModelStruct(savedAyah: 0, nextSavedAyah: 0);
+  } else {
+    SavedSuraModelStruct savedModel = userModel.savedAyahList
+        .firstWhere((currency) => currency.ayahId == suraId);
+
+    return SavedSuraModelStruct(
+        savedAyah: savedModel.savedAyah,
+        nextSavedAyah: savedModel.nextSavedAyah,
+        savedAyahDate: savedModel.savedAyahDate,
+        nextSavedAyahDate: savedModel.nextSavedAyahDate,
+        ayahId: savedModel.ayahId);
+  }
 }

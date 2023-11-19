@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -38,6 +39,12 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.soneFireBaseModelList =
+          await UserCollectionRecord.getDocumentOnce(widget.soneReference!);
+      setState(() {
+        _model.soneUserModel = functions
+            .convertFromFirebaseToUserModel(_model.soneFireBaseModelList!);
+      });
       setState(() {
         _model.listOfSuras = getJsonField(
           functions.getAllSurhs(),
@@ -217,7 +224,7 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                       return GridView.builder(
                         padding: EdgeInsets.zero,
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
+                          crossAxisCount: 2,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
                           childAspectRatio: 1.0,
@@ -276,27 +283,97 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.00, 0.00),
-                                  child: Text(
-                                    functions.getNameByLanguge(
-                                        getJsonField(
-                                          listOfSuraItem,
-                                          r'''$.englishName''',
-                                        ).toString(),
-                                        getJsonField(
-                                          listOfSuraItem,
-                                          r'''$.name''',
-                                        ).toString(),
-                                        FFLocalizations.of(context)
-                                            .languageCode),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontWeight: FontWeight.w600,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(0.00, 0.00),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 5.0, 5.0, 5.0),
+                                        child: Text(
+                                          functions.getNameByLanguge(
+                                              getJsonField(
+                                                listOfSuraItem,
+                                                r'''$.englishName''',
+                                              ).toString(),
+                                              getJsonField(
+                                                listOfSuraItem,
+                                                r'''$.name''',
+                                              ).toString(),
+                                              FFLocalizations.of(context)
+                                                  .languageCode),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
-                                  ),
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 5.0, 5.0, 5.0),
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              functions
+                                                  .getSavedAyahModelFromFirbase(
+                                                      _model.soneUserModel!,
+                                                      getJsonField(
+                                                        listOfSuraItem,
+                                                        r'''$.number''',
+                                                      ))
+                                                  ?.savedAyah
+                                                  .toString(),
+                                              '0',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: const Color(0xFF39D485),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          valueOrDefault<String>(
+                                            functions
+                                                .getSavedAyahModelFromFirbase(
+                                                    _model.soneUserModel!,
+                                                    getJsonField(
+                                                      listOfSuraItem,
+                                                      r'''$.number''',
+                                                    ))
+                                                ?.nextSavedAyah
+                                                .toString(),
+                                            '0',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: const Color(0xFFE9B33C),
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
