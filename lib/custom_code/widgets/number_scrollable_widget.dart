@@ -40,8 +40,12 @@ class _NumberScrollableWidgetState extends State<NumberScrollableWidget> {
       children: <Widget>[
         NumberPicker(
           value: widget.isSavedCurrent == true
-              ? FFAppState().timeModelAppState.calculationValue
-              : FFAppState().timeModelAppState.sufxCalculationModel,
+              ? (FFAppState().timeModelAppState.calculationValue == 0
+                  ? 1
+                  : FFAppState().timeModelAppState.calculationValue)
+              : (FFAppState().timeModelAppState.sufxCalculationModel == 0
+                  ? 1
+                  : FFAppState().timeModelAppState.sufxCalculationModel),
           minValue: 1,
           maxValue: widget.maxAyat,
           onChanged: (value) {

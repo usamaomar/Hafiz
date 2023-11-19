@@ -141,11 +141,9 @@ class _AddHifzComponentDialogWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          setState(() {
-                            FFAppState().timeModelAppState = TimeModelStruct(
-                              calculationValue: 1,
-                            );
-                          });
+                          FFAppState().timeModelAppState = TimeModelStruct(
+                            calculationValue: 1,
+                          );
                           Navigator.pop(context);
                         },
                         child: Icon(
@@ -290,11 +288,9 @@ class _AddHifzComponentDialogWidgetState
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              FFAppState().timeModelAppState = TimeModelStruct(
-                                calculationValue: 1,
-                              );
-                            });
+                            FFAppState().timeModelAppState = TimeModelStruct(
+                              calculationValue: 1,
+                            );
                             Navigator.pop(context);
                           },
                           text: FFLocalizations.of(context).getText(
@@ -369,11 +365,9 @@ class _AddHifzComponentDialogWidgetState
                               },
                             ),
                           });
-                          setState(() {
-                            FFAppState().timeModelAppState = TimeModelStruct(
-                              calculationValue: 1,
-                            );
-                          });
+                          FFAppState().timeModelAppState = TimeModelStruct(
+                            calculationValue: 1,
+                          );
                           Navigator.pop(context);
 
                           setState(() {});
