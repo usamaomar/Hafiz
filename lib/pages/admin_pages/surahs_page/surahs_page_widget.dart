@@ -46,13 +46,13 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
             .convertFromFirebaseToUserModel(_model.soneFireBaseModelList!);
       });
       setState(() {
-        _model.listOfSuras = getJsonField(
-          functions.getAllSurhs(),
-          r'''$.data''',
-          true,
-        )!
+        _model.listOfSuras = functions
+            .convertFromJsonListToModel(getJsonField(
+              functions.getAllSurhs(),
+              r'''$.data''',
+            ))
             .toList()
-            .cast<dynamic>();
+            .cast<SuraModelStruct>();
       });
     });
 
@@ -145,21 +145,7 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
                             const Duration(milliseconds: 400),
-                            () async {
-                              setState(() {
-                                _model.listOfSuras = functions
-                                    .filterSuraModelsList(
-                                        getJsonField(
-                                          functions.getAllSurhs(),
-                                          r'''$.data''',
-                                          true,
-                                        )!,
-                                        _model.listOfSuras.toList(),
-                                        _model.textController.text)
-                                    .toList()
-                                    .cast<dynamic>();
-                              });
-                            },
+                            () => setState(() {}),
                           ),
                           obscureText: false,
                           decoration: InputDecoration(
@@ -262,10 +248,8 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                         child: SizedBox(
                                           height: 500.0,
                                           child: AddHifzComponentDialogWidget(
-                                            suraJsonModel: getJsonField(
-                                              listOfSuraItem,
-                                              r'''$''',
-                                            ),
+                                            suraJsonModel:
+                                                listOfSuraItem.toMap(),
                                             soneReference:
                                                 widget.soneReference!,
                                           ),
@@ -295,14 +279,8 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                             5.0, 5.0, 5.0, 5.0),
                                         child: Text(
                                           functions.getNameByLanguge(
-                                              getJsonField(
-                                                listOfSuraItem,
-                                                r'''$.englishName''',
-                                              ).toString(),
-                                              getJsonField(
-                                                listOfSuraItem,
-                                                r'''$.name''',
-                                              ).toString(),
+                                              listOfSuraItem.englishName,
+                                              listOfSuraItem.name,
                                               FFLocalizations.of(context)
                                                   .languageCode),
                                           style: FlutterFlowTheme.of(context)
@@ -328,10 +306,7 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                               functions
                                                   .getSavedAyahModelFromFirbase(
                                                       _model.soneUserModel!,
-                                                      getJsonField(
-                                                        listOfSuraItem,
-                                                        r'''$.number''',
-                                                      ))
+                                                      listOfSuraItem.number)
                                                   ?.savedAyah
                                                   .toString(),
                                               '0',
@@ -356,10 +331,7 @@ class _SurahsPageWidgetState extends State<SurahsPageWidget> {
                                             functions
                                                 .getSavedAyahModelFromFirbase(
                                                     _model.soneUserModel!,
-                                                    getJsonField(
-                                                      listOfSuraItem,
-                                                      r'''$.number''',
-                                                    ))
+                                                    listOfSuraItem.number)
                                                 ?.nextSavedAyah
                                                 .toString(),
                                             '0',

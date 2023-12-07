@@ -236,7 +236,7 @@ UserModelStruct convertFromFirebaseToUserModel(
       adminReference: soneFirebaseUserObject.adminReference,
       centerReference: soneFirebaseUserObject.centerReference,
       age: soneFirebaseUserObject.age,
-      createdTime: soneFirebaseUserObject.createdTime,
+      createdTime: soneFirebaseUserObject.createdTime ?? DateTime(0),
       savedAyahList: soneFirebaseUserObject.savedAyahList,
       displayName: soneFirebaseUserObject.displayName);
 }
@@ -258,4 +258,12 @@ SavedSuraModelStruct? getSavedAyahModelFromFirbase(
         nextSavedAyahDate: savedModel.nextSavedAyahDate,
         ayahId: savedModel.ayahId);
   }
+}
+
+List<SuraModelStruct> convertFromJsonListToModel(dynamic jsonObject) {
+  return jsonObject
+      .map((e) => e != null && e != '' ? SuraModelStruct.fromMap(e) : null)
+      .toList()
+      .toList()
+      .cast<SuraModelStruct>();
 }

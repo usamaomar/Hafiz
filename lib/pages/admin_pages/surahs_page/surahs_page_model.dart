@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 class SurahsPageModel extends FlutterFlowModel<SurahsPageWidget> {
   ///  Local state fields for this page.
 
-  List<dynamic> listOfSuras = [];
-  void addToListOfSuras(dynamic item) => listOfSuras.add(item);
-  void removeFromListOfSuras(dynamic item) => listOfSuras.remove(item);
+  List<SuraModelStruct> listOfSuras = [];
+  void addToListOfSuras(SuraModelStruct item) => listOfSuras.add(item);
+  void removeFromListOfSuras(SuraModelStruct item) => listOfSuras.remove(item);
   void removeAtIndexFromListOfSuras(int index) => listOfSuras.removeAt(index);
-  void insertAtIndexInListOfSuras(int index, dynamic item) =>
+  void insertAtIndexInListOfSuras(int index, SuraModelStruct item) =>
       listOfSuras.insert(index, item);
-  void updateListOfSurasAtIndex(int index, Function(dynamic) updateFn) =>
+  void updateListOfSurasAtIndex(
+          int index, Function(SuraModelStruct) updateFn) =>
       listOfSuras[index] = updateFn(listOfSuras[index]);
 
   UserModelStruct? soneUserModel;
