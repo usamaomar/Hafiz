@@ -155,13 +155,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // UserHomePage
-  {
-    's1qy6gxp': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
   // SplashPage
   {
     '3i2hct3l': {
@@ -322,6 +315,52 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': 'سور القران',
     },
     '4qznjez8': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // UserHomePage
+  {
+    'p2yffv31': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    '1x0xqu1f': {
+      'en': '',
+      'ar': '',
+    },
+    'q1jwv86x': {
+      'en': 'Son Name : ',
+      'ar': 'اسم الحافظ :',
+    },
+    'x9wz3old': {
+      'en': 'Age : ',
+      'ar': 'عمر :',
+    },
+    '9ntzm21o': {
+      'en': 'Add saved',
+      'ar': 'أضف المحفوظات',
+    },
+    '6pybq6aw': {
+      'en': 'Haves Name',
+      'ar': 'اسم الحافظ',
+    },
+  },
+  // ParentSurahsPage
+  {
+    'rbdjl12o': {
+      'en': 'Search',
+      'ar': 'بحث',
+    },
+    '9axld02j': {
+      'en': '',
+      'ar': '',
+    },
+    '0d9zi8nr': {
+      'en': 'Qraan Surahs',
+      'ar': 'سور القران',
+    },
+    'rojihuqq': {
       'en': 'Home',
       'ar': '',
     },

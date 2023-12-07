@@ -1,9 +1,9 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'surahs_page_widget.dart' show SurahsPageWidget;
+import 'parent_surahs_page_widget.dart' show ParentSurahsPageWidget;
 import 'package:flutter/material.dart';
 
-class SurahsPageModel extends FlutterFlowModel<SurahsPageWidget> {
+class ParentSurahsPageModel extends FlutterFlowModel<ParentSurahsPageWidget> {
   ///  Local state fields for this page.
 
   List<dynamic> listOfSuras = [];
@@ -22,7 +22,7 @@ class SurahsPageModel extends FlutterFlowModel<SurahsPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - Read Document] action in SurahsPage widget.
+  // Stores action output result for [Backend Call - Read Document] action in ParentSurahsPage widget.
   UserCollectionRecord? soneFireBaseModelList;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;

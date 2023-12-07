@@ -2,8 +2,6 @@
 export '/login_page/login_page_widget.dart' show LoginPageWidget;
 export '/pages/developer_pages/developer_home_page/developer_home_page_widget.dart'
     show DeveloperHomePageWidget;
-export '/pages/user_pages/user_home_page/user_home_page_widget.dart'
-    show UserHomePageWidget;
 export '/pages/splash_page/splash_page_widget.dart' show SplashPageWidget;
 export '/pages/developer_pages/add_admins_page/add_admins_page_widget.dart'
     show AddAdminsPageWidget;
@@ -18,3 +16,7 @@ export '/pages/admin_pages/add_sone_page/add_sone_page_widget.dart'
     show AddSonePageWidget;
 export '/pages/admin_pages/surahs_page/surahs_page_widget.dart'
     show SurahsPageWidget;
+export '/pages/user_pages/user_home_page/user_home_page_widget.dart'
+    show UserHomePageWidget;
+export '/pages/user_pages/parent_surahs_page/parent_surahs_page_widget.dart'
+    show ParentSurahsPageWidget;

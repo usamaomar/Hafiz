@@ -31,12 +31,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const SplashPageWidget(),
+      errorBuilder: (context, state) => const NavBarPage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const SplashPageWidget(),
+          builder: (context, _) => const NavBarPage(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -49,11 +49,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'DeveloperHomePage')
               : const DeveloperHomePageWidget(),
-        ),
-        FFRoute(
-          name: 'UserHomePage',
-          path: '/userHomePage',
-          builder: (context, params) => const UserHomePageWidget(),
         ),
         FFRoute(
           name: 'SplashPage',
@@ -114,6 +109,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SurahsPage',
           path: '/surahsPage',
           builder: (context, params) => SurahsPageWidget(
+            sonModel: params.getParam('sonModel', ParamType.JSON),
+            soneReference: params.getParam('soneReference',
+                ParamType.DocumentReference, false, ['userCollection']),
+          ),
+        ),
+        FFRoute(
+          name: 'UserHomePage',
+          path: '/userHomePage',
+          builder: (context, params) => const UserHomePageWidget(),
+        ),
+        FFRoute(
+          name: 'ParentSurahsPage',
+          path: '/parentSurahsPage',
+          builder: (context, params) => ParentSurahsPageWidget(
             sonModel: params.getParam('sonModel', ParamType.JSON),
             soneReference: params.getParam('soneReference',
                 ParamType.DocumentReference, false, ['userCollection']),

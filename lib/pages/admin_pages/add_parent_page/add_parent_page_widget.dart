@@ -46,6 +46,10 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
             .where(
               'center_reference',
               isEqualTo: widget.centerReference,
+            )
+            .where(
+              'admin_reference',
+              isEqualTo: FFAppState().userModel.modelReference,
             ),
       );
       setState(() {

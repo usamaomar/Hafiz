@@ -248,8 +248,14 @@ SavedSuraModelStruct? getSavedAyahModelFromFirbase(
   if (userModel.savedAyahList.isEmpty) {
     return SavedSuraModelStruct(savedAyah: 0, nextSavedAyah: 0);
   } else {
-    SavedSuraModelStruct savedModel = userModel.savedAyahList
-        .firstWhere((currency) => currency.ayahId == suraId);
+    SavedSuraModelStruct savedModel = userModel.savedAyahList.firstWhere(
+        (currency) => currency.ayahId == suraId,
+        orElse: () => SavedSuraModelStruct(
+            ayahId: suraId,
+            savedAyah: 0,
+            nextSavedAyah: 0,
+            nextSavedAyahDate: DateTime(2023),
+            savedAyahDate: DateTime(2023)));
 
     return SavedSuraModelStruct(
         savedAyah: savedModel.savedAyah,
@@ -258,12 +264,4 @@ SavedSuraModelStruct? getSavedAyahModelFromFirbase(
         nextSavedAyahDate: savedModel.nextSavedAyahDate,
         ayahId: savedModel.ayahId);
   }
-}
-
-List<SuraModelStruct> convertFromJsonListToModel(dynamic jsonObject) {
-  return jsonObject
-      .map((e) => e != null && e != '' ? SuraModelStruct.fromMap(e) : null)
-      .toList()
-      .toList()
-      .cast<SuraModelStruct>();
 }
