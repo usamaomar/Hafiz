@@ -32,7 +32,7 @@ class FFAppState extends ChangeNotifier {
     updateFn(_userModel);
   }
 
-  LatLng? _location;
+  LatLng? _location = const LatLng(40.75177480000001, -73.9900696);
   LatLng? get location => _location;
   set location(LatLng? value) {
     _location = value;

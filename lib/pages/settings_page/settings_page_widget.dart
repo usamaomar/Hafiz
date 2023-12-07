@@ -110,7 +110,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           onTap: () async {
                             FFAppState().update(() {
                               FFAppState().userModel = UserModelStruct();
-                              FFAppState().location = null;
+                              FFAppState().location =
+                                  const LatLng(40.75177480000001, -73.9900696);
                               FFAppState().listOfNames = [];
                               FFAppState().listOfPhoneNumbers = [];
                               FFAppState().usereAppStateList = [];

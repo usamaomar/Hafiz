@@ -93,20 +93,6 @@ class _UserHomePageWidgetState extends State<UserHomePageWidget> {
         appBar: AppBar(
           backgroundColor: const Color(0xFFF5F0F0),
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
           title: Text(
             FFLocalizations.of(context).getText(
               '6pybq6aw' /* Haves Name */,
@@ -322,7 +308,10 @@ class _UserHomePageWidgetState extends State<UserHomePageWidget> {
                                                     ),
                                                     'soneReference':
                                                         serializeParam(
-                                                      null,
+                                                      _model
+                                                          .firebaseListOfUseres?[
+                                                              dataListIndex]
+                                                          .reference,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
