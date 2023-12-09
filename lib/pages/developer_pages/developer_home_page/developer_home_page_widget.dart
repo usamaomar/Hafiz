@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/developer_pages/add_center_dialog/add_center_dialog_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:collection/collection.dart';
@@ -260,116 +261,181 @@ class _DeveloperHomePageWidgetState extends State<DeveloperHomePageWidget> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final list =
-                          _model.localCenterList.map((e) => e).toList();
-                      return DataTable2(
-                        columns: [
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  '9r1hjcbs' /* Center Name */,
-                                ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'nnv2dv3a' /* Phone Number */,
-                                ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
-                              ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  '2jluf0b5' /* Assign */,
-                                ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
-                              ),
-                            ),
-                          ),
-                        ],
-                        rows: list
-                            .mapIndexed((listIndex, listItem) => [
-                                  Text(
-                                    listItem.name,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Text(
-                                    listItem.phoneNumber,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'AdminsPage',
-                                        queryParameters: {
-                                          'centerModel': serializeParam(
-                                            listItem.toMap(),
-                                            ParamType.JSON,
-                                          ),
-                                          'centerDocument': serializeParam(
-                                            _model.localDocumentList[listIndex],
-                                            ParamType.Document,
-                                          ),
-                                          'centerReference': serializeParam(
-                                            _model.localDocumentList[listIndex]
-                                                .reference,
-                                            ParamType.DocumentReference,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          'centerDocument': _model
-                                              .localDocumentList[listIndex],
-                                        },
-                                      );
-                                    },
-                                    child: Icon(
-                                      Icons.storage,
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 24.0,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                      child: Builder(
+                        builder: (context) {
+                          final list =
+                              _model.localCenterList.map((e) => e).toList();
+                          return DataTable2(
+                            columns: [
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      '9r1hjcbs' /* Center Name */,
                                     ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
                                   ),
-                                ].map((c) => DataCell(c)).toList())
-                            .map((e) => DataRow(cells: e))
-                            .toList(),
-                        headingRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).primaryBackground,
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'nnv2dv3a' /* Phone Number */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
+                                ),
+                              ),
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      '2jluf0b5' /* Assign */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            rows: list
+                                .mapIndexed((listIndex, listItem) => [
+                                      Text(
+                                        listItem.name,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                      Text(
+                                        listItem.phoneNumber,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'AdminsPage',
+                                            queryParameters: {
+                                              'centerModel': serializeParam(
+                                                listItem.toMap(),
+                                                ParamType.JSON,
+                                              ),
+                                              'centerDocument': serializeParam(
+                                                _model.localDocumentList[
+                                                    listIndex],
+                                                ParamType.Document,
+                                              ),
+                                              'centerReference': serializeParam(
+                                                _model
+                                                    .localDocumentList[
+                                                        listIndex]
+                                                    .reference,
+                                                ParamType.DocumentReference,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              'centerDocument': _model
+                                                  .localDocumentList[listIndex],
+                                            },
+                                          );
+                                        },
+                                        child: Icon(
+                                          Icons.storage,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                      ),
+                                    ].map((c) => DataCell(c)).toList())
+                                .map((e) => DataRow(cells: e))
+                                .toList(),
+                            headingRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).primaryBackground,
+                            ),
+                            headingRowHeight: 56.0,
+                            dataRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                            ),
+                            dataRowHeight: 56.0,
+                            border: TableBorder(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            dividerThickness: 1.0,
+                            showBottomBorder: true,
+                            minWidth: 49.0,
+                          );
+                        },
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60.0,
+                          child: custom_widgets.PullToRefreshCustome(
+                            width: double.infinity,
+                            height: 60.0,
+                            pulledAction: () async {
+                              _model.listOfFirebaseCentersCopy =
+                                  await queryCenterCollectionRecordOnce();
+                              setState(() {
+                                FFAppState().listOfNames = _model
+                                    .listOfFirebaseCentersCopy!
+                                    .map((e) => e.name)
+                                    .toList()
+                                    .cast<String>();
+                                FFAppState().listOfPhoneNumbers = _model
+                                    .listOfFirebaseCentersCopy!
+                                    .map((e) => e.phoneNumber)
+                                    .toList()
+                                    .cast<String>();
+                                FFAppState().appStateCenterList = functions
+                                    .convertFromFirebaseToCenterList(_model
+                                        .listOfFirebaseCentersCopy!
+                                        .toList())
+                                    .toList()
+                                    .cast<CenterModelStruct>();
+                              });
+                              setState(() {
+                                _model.localDocumentList = _model
+                                    .listOfFirebaseCentersCopy!
+                                    .toList()
+                                    .cast<CenterCollectionRecord>();
+                              });
+                              setState(() {
+                                _model.localCenterList = functions
+                                    .combineStringLists(
+                                        FFAppState().listOfNames.toList(),
+                                        FFAppState()
+                                            .listOfPhoneNumbers
+                                            .toList())
+                                    .toList()
+                                    .cast<CenterModelStruct>();
+                              });
+
+                              setState(() {});
+                            },
+                          ),
                         ),
-                        headingRowHeight: 56.0,
-                        dataRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        dataRowHeight: 56.0,
-                        border: TableBorder(
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                        dividerThickness: 1.0,
-                        showBottomBorder: true,
-                        minWidth: 49.0,
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

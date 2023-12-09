@@ -2,6 +2,7 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -212,126 +213,171 @@ class _ParentSurahsPageWidgetState extends State<ParentSurahsPageWidget> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
-                  child: Builder(
-                    builder: (context) {
-                      final listOfSura =
-                          _model.listOfSuras.map((e) => e).toList();
-                      return GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10.0,
-                          mainAxisSpacing: 10.0,
-                          childAspectRatio: 1.0,
-                        ),
-                        scrollDirection: Axis.vertical,
-                        itemCount: listOfSura.length,
-                        itemBuilder: (context, listOfSuraIndex) {
-                          final listOfSuraItem = listOfSura[listOfSuraIndex];
-                          return Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          15.0, 15.0, 15.0, 15.0),
+                      child: Builder(
+                        builder: (context) {
+                          final listOfSura =
+                              _model.listOfSuras.map((e) => e).toList();
+                          return GridView.builder(
+                            padding: EdgeInsets.zero,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10.0,
+                              mainAxisSpacing: 10.0,
+                              childAspectRatio: 1.0,
                             ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: const AlignmentDirectional(0.00, 0.00),
-                                  child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 5.0, 5.0, 5.0),
-                                    child: Text(
-                                      functions.getNameByLanguge(
-                                          getJsonField(
-                                            listOfSuraItem,
-                                            r'''$.englishName''',
-                                          ).toString(),
-                                          getJsonField(
-                                            listOfSuraItem,
-                                            r'''$.name''',
-                                          ).toString(),
-                                          FFLocalizations.of(context)
-                                              .languageCode),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ),
+                            scrollDirection: Axis.vertical,
+                            itemCount: listOfSura.length,
+                            itemBuilder: (context, listOfSuraIndex) {
+                              final listOfSuraItem =
+                                  listOfSura[listOfSuraIndex];
+                              return Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                Row(
+                                child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 5.0, 5.0, 5.0),
-                                      child: Text(
-                                        valueOrDefault<String>(
-                                          functions
-                                              .getSavedAyahModelFromFirbase(
-                                                  _model.soneUserModel!,
-                                                  getJsonField(
-                                                    listOfSuraItem,
-                                                    r'''$.number''',
-                                                  ))
-                                              ?.savedAyah
-                                              .toString(),
-                                          '0',
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(0.00, 0.00),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            5.0, 5.0, 5.0, 5.0),
+                                        child: Text(
+                                          functions.getNameByLanguge(
+                                              getJsonField(
+                                                listOfSuraItem,
+                                                r'''$.englishName''',
+                                              ).toString(),
+                                              getJsonField(
+                                                listOfSuraItem,
+                                                r'''$.name''',
+                                              ).toString(),
+                                              FFLocalizations.of(context)
+                                                  .languageCode),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: const Color(0xFF39D485),
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 5.0, 5.0, 5.0),
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              functions
+                                                  .getSavedAyahModelFromFirbase(
+                                                      _model.soneUserModel!,
+                                                      getJsonField(
+                                                        listOfSuraItem,
+                                                        r'''$.number''',
+                                                      ))
+                                                  ?.savedAyah
+                                                  .toString(),
+                                              '0',
                                             ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      valueOrDefault<String>(
-                                        functions
-                                            .getSavedAyahModelFromFirbase(
-                                                _model.soneUserModel!,
-                                                getJsonField(
-                                                  listOfSuraItem,
-                                                  r'''$.number''',
-                                                ))
-                                            ?.nextSavedAyah
-                                            .toString(),
-                                        '0',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: const Color(0xFFE9B33C),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: const Color(0xFF39D485),
+                                                ),
                                           ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          valueOrDefault<String>(
+                                            functions
+                                                .getSavedAyahModelFromFirbase(
+                                                    _model.soneUserModel!,
+                                                    getJsonField(
+                                                      listOfSuraItem,
+                                                      r'''$.number''',
+                                                    ))
+                                                ?.nextSavedAyah
+                                                .toString(),
+                                            '0',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: const Color(0xFFE9B33C),
+                                              ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
+                              );
+                            },
                           );
                         },
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60.0,
+                          child: custom_widgets.PullToRefreshCustome(
+                            width: double.infinity,
+                            height: 60.0,
+                            pulledAction: () async {
+                              _model.soneFireBaseModelListCopy =
+                                  await UserCollectionRecord.getDocumentOnce(
+                                      widget.soneReference!);
+                              setState(() {
+                                _model.soneUserModel =
+                                    functions.convertFromFirebaseToUserModel(
+                                        _model.soneFireBaseModelListCopy!);
+                              });
+                              setState(() {
+                                _model.listOfSuras = getJsonField(
+                                  functions.getAllSurhs(),
+                                  r'''$.data''',
+                                  true,
+                                )!
+                                    .toList()
+                                    .cast<dynamic>();
+                              });
+
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

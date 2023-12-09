@@ -43,6 +43,8 @@ class DeveloperHomePageModel extends FlutterFlowModel<DeveloperHomePageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in PullToRefreshCustome widget.
+  List<CenterCollectionRecord>? listOfFirebaseCentersCopy;
 
   /// Initialization and disposal methods.
 

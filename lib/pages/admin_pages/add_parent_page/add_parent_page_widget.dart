@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin_pages/add_parent_dialog/add_parent_dialog_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -267,111 +268,184 @@ class _AddParentPageWidgetState extends State<AddParentPageWidget> {
                 ),
               ),
               Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final dataList =
-                        _model.userLocalStateList.map((e) => e).toList();
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: dataList.length,
-                      itemBuilder: (context, dataListIndex) {
-                        final dataListItem = dataList[dataListIndex];
-                        return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              5.0, 5.0, 5.0, 5.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              context.pushNamed(
-                                'AddSonePage',
-                                queryParameters: {
-                                  'centerReference': serializeParam(
-                                    widget.centerReference,
-                                    ParamType.DocumentReference,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                      child: Builder(
+                        builder: (context) {
+                          final dataList =
+                              _model.userLocalStateList.map((e) => e).toList();
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            itemCount: dataList.length,
+                            itemBuilder: (context, dataListIndex) {
+                              final dataListItem = dataList[dataListIndex];
+                              return Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 5.0, 5.0, 5.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'AddSonePage',
+                                      queryParameters: {
+                                        'centerReference': serializeParam(
+                                          widget.centerReference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                        'parentReferences': serializeParam(
+                                          _model
+                                              .firebaseListOfUseres?[
+                                                  dataListIndex]
+                                              .reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Card(
+                                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 4.0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 10.0, 10.0, 10.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'xn65tho4' /* Parent Name :  */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 16.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                              Text(
+                                                dataListItem.displayName,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 10.0, 10.0, 10.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  'dbouzltw' /* Phone Number :  */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          fontSize: 16.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                              ),
+                                              Text(
+                                                dataListItem.phoneNumber,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  'parentReferences': serializeParam(
-                                    _model.firebaseListOfUseres?[dataListIndex]
-                                        .reference,
-                                    ParamType.DocumentReference,
-                                  ),
-                                }.withoutNulls,
+                                ),
                               );
                             },
-                            child: Card(
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              elevation: 4.0,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 10.0, 10.0, 10.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          FFLocalizations.of(context).getText(
-                                            'xn65tho4' /* Parent Name :  */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                          );
+                        },
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60.0,
+                          child: custom_widgets.PullToRefreshCustome(
+                            width: double.infinity,
+                            height: 60.0,
+                            pulledAction: () async {
+                              _model.firebaseListOfUseresCopy =
+                                  await queryUserCollectionRecordOnce(
+                                queryBuilder: (userCollectionRecord) =>
+                                    userCollectionRecord
+                                        .where(
+                                          'user_type',
+                                          isEqualTo: 2,
+                                        )
+                                        .where(
+                                          'center_reference',
+                                          isEqualTo: widget.centerReference,
+                                        )
+                                        .where(
+                                          'admin_reference',
+                                          isEqualTo: FFAppState()
+                                              .userModel
+                                              .modelReference,
                                         ),
-                                        Text(
-                                          dataListItem.displayName,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 10.0, 10.0, 10.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Text(
-                                          FFLocalizations.of(context).getText(
-                                            'dbouzltw' /* Phone Number :  */,
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                        Text(
-                                          dataListItem.phoneNumber,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                              );
+                              setState(() {
+                                FFAppState().usereAppStateList = functions
+                                    .convertFromFirebaseToUserList(_model
+                                        .firebaseListOfUseresCopy!
+                                        .toList())
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+                              setState(() {
+                                _model.userLocalStateList = FFAppState()
+                                    .usereAppStateList
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+
+                              setState(() {});
+                            },
                           ),
-                        );
-                      },
-                    );
-                  },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

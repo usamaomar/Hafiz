@@ -444,8 +444,9 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
                               });
                               setState(() {
                                 FFAppState().usereAppStateList = functions
-                                    .convertFromFirebaseToUserList(
-                                        _model.firebaseListOfUseres!.toList())
+                                    .convertFromFirebaseToUserList(_model
+                                        .firebaseListOfUseresCopy!
+                                        .toList())
                                     .toList()
                                     .cast<UserModelStruct>();
                               });

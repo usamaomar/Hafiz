@@ -28,6 +28,8 @@ class SurahsPageModel extends FlutterFlowModel<SurahsPageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Backend Call - Read Document] action in PullToRefreshCustome widget.
+  UserCollectionRecord? soneFireBaseModelListCopy;
 
   /// Initialization and disposal methods.
 

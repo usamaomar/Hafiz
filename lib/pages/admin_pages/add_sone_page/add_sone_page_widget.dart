@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin_pages/add_sone_dialog/add_sone_dialog_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -271,152 +272,212 @@ class _AddSonePageWidgetState extends State<AddSonePageWidget> {
                 ),
               ),
               Expanded(
-                child: Builder(
-                  builder: (context) {
-                    final dataList =
-                        _model.userLocalStateList.map((e) => e).toList();
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: dataList.length,
-                      itemBuilder: (context, dataListIndex) {
-                        final dataListItem = dataList[dataListIndex];
-                        return Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              5.0, 5.0, 5.0, 5.0),
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            elevation: 4.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          '9i2zxeaw' /* Son Name :  */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      Text(
-                                        dataListItem.displayName,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                    ],
-                                  ),
+                child: Stack(
+                  children: [
+                    Builder(
+                      builder: (context) {
+                        final dataList =
+                            _model.userLocalStateList.map((e) => e).toList();
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          scrollDirection: Axis.vertical,
+                          itemCount: dataList.length,
+                          itemBuilder: (context, dataListIndex) {
+                            final dataListItem = dataList[dataListIndex];
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 5.0, 5.0, 5.0),
+                              child: Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 10.0, 10.0, 10.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'v4h6wpge' /* Age :  */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      Text(
-                                        dataListItem.age,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Row(
+                                child: Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 10.0),
-                                      child: Column(
+                                          10.0, 10.0, 10.0, 10.0),
+                                      child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 5.0),
-                                            child: FlutterFlowIconButton(
-                                              borderColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              borderRadius: 20.0,
-                                              borderWidth: 1.0,
-                                              buttonSize: 46.0,
-                                              fillColor: Colors.white,
-                                              icon: Icon(
-                                                Icons.chrome_reader_mode_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                                size: 24.0,
-                                              ),
-                                              onPressed: () async {
-                                                context.pushNamed(
-                                                  'SurahsPage',
-                                                  queryParameters: {
-                                                    'sonModel': serializeParam(
-                                                      dataListItem.toMap(),
-                                                      ParamType.JSON,
-                                                    ),
-                                                    'soneReference':
-                                                        serializeParam(
-                                                      _model
-                                                          .firebaseListOfUseres?[
-                                                              dataListIndex]
-                                                          .reference,
-                                                      ParamType
-                                                          .DocumentReference,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
-                                              },
-                                            ),
-                                          ),
                                           Text(
                                             FFLocalizations.of(context).getText(
-                                              '0tlf7pbf' /* Add saved */,
+                                              '9i2zxeaw' /* Son Name :  */,
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            dataListItem.displayName,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
                                         ],
                                       ),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 10.0, 10.0, 10.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Text(
+                                            FFLocalizations.of(context).getText(
+                                              'v4h6wpge' /* Age :  */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 16.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                          Text(
+                                            dataListItem.age,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 10.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        20.0, 0.0, 20.0, 5.0),
+                                                child: FlutterFlowIconButton(
+                                                  borderColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  borderRadius: 20.0,
+                                                  borderWidth: 1.0,
+                                                  buttonSize: 46.0,
+                                                  fillColor: Colors.white,
+                                                  icon: Icon(
+                                                    Icons
+                                                        .chrome_reader_mode_sharp,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                      'SurahsPage',
+                                                      queryParameters: {
+                                                        'sonModel':
+                                                            serializeParam(
+                                                          dataListItem.toMap(),
+                                                          ParamType.JSON,
+                                                        ),
+                                                        'soneReference':
+                                                            serializeParam(
+                                                          _model
+                                                              .firebaseListOfUseres?[
+                                                                  dataListIndex]
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              Text(
+                                                FFLocalizations.of(context)
+                                                    .getText(
+                                                  '0tlf7pbf' /* Add saved */,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            );
+                          },
                         );
                       },
-                    );
-                  },
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60.0,
+                          child: custom_widgets.PullToRefreshCustome(
+                            width: double.infinity,
+                            height: 60.0,
+                            pulledAction: () async {
+                              _model.firebaseListOfUseresCopy =
+                                  await queryUserCollectionRecordOnce(
+                                queryBuilder: (userCollectionRecord) =>
+                                    userCollectionRecord
+                                        .where(
+                                          'user_type',
+                                          isEqualTo: 3,
+                                        )
+                                        .where(
+                                          'center_reference',
+                                          isEqualTo: widget.centerReference,
+                                        )
+                                        .where(
+                                          'parents_reference',
+                                          isEqualTo: widget.parentReferences,
+                                        ),
+                              );
+                              setState(() {
+                                FFAppState().usereAppStateList = functions
+                                    .convertFromFirebaseToUserList(_model
+                                        .firebaseListOfUseresCopy!
+                                        .toList())
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+                              setState(() {
+                                _model.userLocalStateList = FFAppState()
+                                    .usereAppStateList
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
