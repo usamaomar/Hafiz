@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/developer_pages/add_user_dialog/add_user_dialog_widget.dart';
 import '/pages/developer_pages/asign_teatcher_dialog/asign_teatcher_dialog_widget.dart';
 import '/pages/developer_pages/showser_dialog/showser_dialog_widget.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:collection/collection.dart';
@@ -219,192 +220,249 @@ class _AddAdminsPageWidgetState extends State<AddAdminsPageWidget> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                  child: Builder(
-                    builder: (context) {
-                      final dataTableList =
-                          _model.userLocalStateList.map((e) => e).toList();
-                      return DataTable2(
-                        columns: [
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'y9lxu6r2' /* Name */,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                      child: Builder(
+                        builder: (context) {
+                          final dataTableList =
+                              _model.userLocalStateList.map((e) => e).toList();
+                          return DataTable2(
+                            columns: [
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'y9lxu6r2' /* Name */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
                                 ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  '0a4cyotz' /* Phone Number */,
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      '0a4cyotz' /* Phone Number */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
                                 ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'aivrqb6f' /* Type */,
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'aivrqb6f' /* Type */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
                                 ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                            ),
-                          ),
-                          DataColumn2(
-                            label: DefaultTextStyle.merge(
-                              softWrap: true,
-                              child: Text(
-                                FFLocalizations.of(context).getText(
-                                  'ogrnc2u2' /* Show */,
+                              DataColumn2(
+                                label: DefaultTextStyle.merge(
+                                  softWrap: true,
+                                  child: Text(
+                                    FFLocalizations.of(context).getText(
+                                      'ogrnc2u2' /* Show */,
+                                    ),
+                                    style:
+                                        FlutterFlowTheme.of(context).labelLarge,
+                                  ),
                                 ),
-                                style: FlutterFlowTheme.of(context).labelLarge,
                               ),
-                            ),
-                          ),
-                        ],
-                        rows: dataTableList
-                            .mapIndexed((dataTableListIndex,
-                                    dataTableListItem) =>
-                                [
-                                  Builder(
-                                    builder: (context) => InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showAlignedDialog(
-                                          context: context,
-                                          isGlobal: true,
-                                          avoidOverflow: false,
-                                          targetAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          builder: (dialogContext) {
-                                            return Material(
-                                              color: Colors.transparent,
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: SizedBox(
-                                                  height: 500.0,
-                                                  child: ShowserDialogWidget(
-                                                    userModel: dataTableListItem
-                                                        .toMap(),
+                            ],
+                            rows: dataTableList
+                                .mapIndexed((dataTableListIndex,
+                                        dataTableListItem) =>
+                                    [
+                                      Builder(
+                                        builder: (context) => InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showAlignedDialog(
+                                              context: context,
+                                              isGlobal: true,
+                                              avoidOverflow: false,
+                                              targetAnchor:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              followerAnchor:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              builder: (dialogContext) {
+                                                return Material(
+                                                  color: Colors.transparent,
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child: SizedBox(
+                                                      height: 500.0,
+                                                      child:
+                                                          ShowserDialogWidget(
+                                                        userModel:
+                                                            dataTableListItem
+                                                                .toMap(),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
-                                            );
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
                                           },
-                                        ).then((value) => setState(() {}));
-                                      },
-                                      child: Text(
-                                        dataTableListItem.displayName,
+                                          child: Text(
+                                            dataTableListItem.displayName,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        dataTableListItem.phoneNumber,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium,
                                       ),
-                                    ),
-                                  ),
-                                  Text(
-                                    dataTableListItem.phoneNumber,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Text(
-                                    functions.getUserTypeName(
-                                        FFLocalizations.of(context)
-                                            .languageCode,
-                                        dataTableListItem.userType),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Builder(
-                                    builder: (context) => InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await showAlignedDialog(
-                                          context: context,
-                                          isGlobal: true,
-                                          avoidOverflow: false,
-                                          targetAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          followerAnchor: const AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          builder: (dialogContext) {
-                                            return Material(
-                                              color: Colors.transparent,
-                                              child: GestureDetector(
-                                                onTap: () => _model.unfocusNode
-                                                        .canRequestFocus
-                                                    ? FocusScope.of(context)
-                                                        .requestFocus(
-                                                            _model.unfocusNode)
-                                                    : FocusScope.of(context)
-                                                        .unfocus(),
-                                                child:
-                                                    AsignTeatcherDialogWidget(
-                                                  userParams: dataTableListItem,
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ).then((value) => setState(() {}));
-                                      },
-                                      child: FaIcon(
-                                        FontAwesomeIcons.leanpub,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
+                                      Text(
+                                        functions.getUserTypeName(
+                                            FFLocalizations.of(context)
+                                                .languageCode,
+                                            dataTableListItem.userType),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
                                       ),
-                                    ),
-                                  ),
-                                ].map((c) => DataCell(c)).toList())
-                            .map((e) => DataRow(cells: e))
-                            .toList(),
-                        headingRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).primaryBackground,
+                                      Builder(
+                                        builder: (context) => InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showAlignedDialog(
+                                              context: context,
+                                              isGlobal: true,
+                                              avoidOverflow: false,
+                                              targetAnchor:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              followerAnchor:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              builder: (dialogContext) {
+                                                return Material(
+                                                  color: Colors.transparent,
+                                                  child: GestureDetector(
+                                                    onTap: () => _model
+                                                            .unfocusNode
+                                                            .canRequestFocus
+                                                        ? FocusScope.of(context)
+                                                            .requestFocus(_model
+                                                                .unfocusNode)
+                                                        : FocusScope.of(context)
+                                                            .unfocus(),
+                                                    child:
+                                                        AsignTeatcherDialogWidget(
+                                                      userParams:
+                                                          dataTableListItem,
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.leanpub,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ].map((c) => DataCell(c)).toList())
+                                .map((e) => DataRow(cells: e))
+                                .toList(),
+                            headingRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).primaryBackground,
+                            ),
+                            headingRowHeight: 56.0,
+                            dataRowColor: MaterialStateProperty.all(
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                            ),
+                            dataRowHeight: 56.0,
+                            border: TableBorder(
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
+                            dividerThickness: 1.0,
+                            showBottomBorder: true,
+                            minWidth: 49.0,
+                          );
+                        },
+                      ),
+                    ),
+                    Align(
+                      alignment: const AlignmentDirectional(0.00, -1.00),
+                      child: Container(
+                        decoration: const BoxDecoration(),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: 60.0,
+                          child: custom_widgets.PullToRefreshCustome(
+                            width: double.infinity,
+                            height: 60.0,
+                            pulledAction: () async {
+                              _model.firebaseListOfUseresCopy =
+                                  await queryUserCollectionRecordOnce();
+                              setState(() {
+                                FFAppState().usereAppStateList = [];
+                              });
+                              setState(() {
+                                _model.userLocalStateList = [];
+                              });
+                              setState(() {
+                                FFAppState().usereAppStateList = functions
+                                    .convertFromFirebaseToUserList(
+                                        _model.firebaseListOfUseres!.toList())
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+                              setState(() {
+                                _model.userLocalStateList = FFAppState()
+                                    .usereAppStateList
+                                    .toList()
+                                    .cast<UserModelStruct>();
+                              });
+
+                              setState(() {});
+                            },
+                          ),
                         ),
-                        headingRowHeight: 56.0,
-                        dataRowColor: MaterialStateProperty.all(
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        dataRowHeight: 56.0,
-                        border: TableBorder(
-                          borderRadius: BorderRadius.circular(0.0),
-                        ),
-                        dividerThickness: 1.0,
-                        showBottomBorder: true,
-                        minWidth: 49.0,
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

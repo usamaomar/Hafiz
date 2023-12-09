@@ -29,6 +29,8 @@ class AddAdminsPageModel extends FlutterFlowModel<AddAdminsPageWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in PullToRefreshCustome widget.
+  List<UserCollectionRecord>? firebaseListOfUseresCopy;
 
   /// Initialization and disposal methods.
 
