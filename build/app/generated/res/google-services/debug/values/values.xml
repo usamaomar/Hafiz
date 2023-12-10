@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">491123002628</string>
+    <string name="google_api_key" translatable="false">AIzaSyD3eXAy84xXwbqLC_QO7xRxQBAYkPCIhVE</string>
+    <string name="google_app_id" translatable="false">1:491123002628:android:0bf398a1bbbc86c70b1451</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD3eXAy84xXwbqLC_QO7xRxQBAYkPCIhVE</string>
+    <string name="google_storage_bucket" translatable="false">hafiz-f7d0c.appspot.com</string>
+    <string name="project_id" translatable="false">hafiz-f7d0c</string>
+</resources>
